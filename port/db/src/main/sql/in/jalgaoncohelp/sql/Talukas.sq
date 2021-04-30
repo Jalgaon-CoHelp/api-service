@@ -1,0 +1,7 @@
+CREATE TABLE talukas (
+    id SERIAL4 PRIMARY KEY,
+    name VARCHAR NOT NULL
+);
+
+getAllTalukas:
+SELECT * FROM talukas;

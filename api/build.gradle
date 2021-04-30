@@ -1,0 +1,24 @@
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlinx-serialization'
+
+dependencies {
+    // Project modules
+    api project(":core")
+    api project(":port:db")
+
+    // Serializer
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializerVersion"
+
+    // Ktor
+    api "io.ktor:ktor-server-netty:$ktorVersion"
+    api "io.ktor:ktor-server-core:$ktorVersion"
+    api "io.ktor:ktor-auth:$ktorVersion"
+    api "io.ktor:ktor-auth-jwt:$ktorVersion"
+    api "io.ktor:ktor-serialization:$ktorVersion"
+
+    // Logging
+    api "ch.qos.logback:logback-classic:$logbackVersion"
+
+    // Kodein DI
+    api "org.kodein.di:kodein-di-framework-ktor-server-jvm:$kodeinDiVersion"
+}

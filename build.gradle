@@ -1,0 +1,78 @@
+buildscript {
+    apply from: 'dependencies.gradle'
+    repositories {
+        google()
+        jcenter()
+        maven { url("https://plugins.gradle.org/m2/") }
+        maven { url 'https://www.jetbrains.com/intellij-repository/releases' }
+        maven { url "https://jetbrains.bintray.com/intellij-third-party-dependencies" }
+
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlinVersion"
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessVersion"
+        classpath "com.squareup.sqldelight:gradle-plugin:$sqlDelightVersion"
+    }
+}
+
+apply plugin: 'kotlin'
+
+group 'in.jalgaoncohelp'
+version "$apiVersion"
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven { url 'https://kotlin.bintray.com/ktor' }
+}
+
+subprojects {
+    apply(plugin: 'org.jetbrains.kotlin.jvm')
+    apply(plugin: 'org.jetbrains.kotlin.kapt')
+
+    sourceSets {
+        main.kotlin.srcDirs = main.java.srcDirs = ['src']
+        test.kotlin.srcDirs = test.java.srcDirs = ['test']
+        main.resources.srcDirs = ['resources']
+        test.resources.srcDirs = ['testresources']
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = javaVersion
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        // Kotlin
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+        // Coroutines
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    }
+
+    apply plugin: "com.diffplug.spotless"
+    spotless {
+        kotlin {
+            target '**/*.kt'
+            targetExclude("$buildDir/**/*.kt")
+            targetExclude('bin/**/*.kt')
+
+            ktlint()
+            licenseHeaderFile rootProject.file('spotless/copyright.kt')
+        }
+        sql {
+            target '**/*.sql' // have to set manually
+            dbeaver()
+        }
+    }
+}

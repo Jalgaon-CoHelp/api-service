@@ -1,0 +1,35 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation "org.liquibase:liquibase-core:$liquibaseVersion"
+    implementation "org.postgresql:postgresql:$postgresVersion"
+}
+
+applicationName = "dph-db-migrate"
+
+mainClassName = "liquibase.integration.commandline.Main"
+
+def databaseHost = System.getenv("DATABASE_HOST") ?: "localhost"
+def databasePort = System.getenv("DATABASE_PORT") ?: "5432"
+def databaseName = System.getenv("DATABASE_NAME") ?: "scalefleet_dev"
+def databaseUsername = System.getenv("DATABASE_USER") ?: "postgres"
+def databasePassword = System.getenv("DATABASE_PASSWORD") ?: "postgres"
+
+run {
+    args "--driver=org.postgresql.Driver"
+    args "--url=jdbc:postgresql://$databaseHost:$databasePort/$databaseName"
+    args "--username=$databaseUsername"
+    args "--password=$databasePassword"
+    args "--changeLogFile=changelog.xml"
+    args 'update'
+}
+
+distributions {
+    main {
+        contents {
+            from('changelog')
+        }
+    }
+}

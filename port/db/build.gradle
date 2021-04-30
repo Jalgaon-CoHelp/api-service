@@ -1,0 +1,30 @@
+apply plugin: 'com.squareup.sqldelight'
+
+sourceSets {
+    // This is because SQLDelight finds resources in `src/main` path.
+    main.kotlin.srcDirs = main.java.srcDirs = ['src/main/kotlin']
+    test.kotlin.srcDirs = test.java.srcDirs = ['src/test/kotlin']
+    main.resources.srcDirs = ['src/main/resources']
+    test.resources.srcDirs = ['src/test/testresources']
+}
+
+sqldelight {
+    JalgaonCoHelpDatabase { // This will be the name of the generated database class.
+        packageName = "in.jalgaoncohelp.db"
+        dialect = "postgresql"
+        sourceFolders = ["sql"]
+    }
+}
+
+dependencies {
+    // Core Module
+    implementation project(":core")
+
+    // SQLDelight
+    implementation "com.squareup.sqldelight:jdbc-driver:1.5.0"
+    api "com.squareup.sqldelight:runtime:$sqlDelightVersion"
+    api "com.squareup.sqldelight:jdbc-driver:$sqlDelightVersion"
+
+    // PostgreSQL
+    api "org.postgresql:postgresql:$postgresVersion"
+}

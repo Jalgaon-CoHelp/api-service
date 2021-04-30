@@ -1,0 +1,11 @@
+rootProject.name = 'jalgaoncohelp-api'
+
+include 'core'
+
+include 'port:db'
+
+include 'api'
+
+include 'application'
+include 'migration'
+

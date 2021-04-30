@@ -1,0 +1,16 @@
+apply plugin: 'application'
+apply plugin: 'kotlin-kapt'
+
+mainClassName = "io.ktor.server.netty.EngineMain"
+
+dependencies {
+    // Project modules
+    implementation project(":api")
+}
+
+task stage {
+    dependsOn installDist
+}
+
+run.dependsOn(":migration:run")
+stage.dependsOn(":migration:run")
