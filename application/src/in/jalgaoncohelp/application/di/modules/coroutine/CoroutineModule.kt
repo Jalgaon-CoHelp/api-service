@@ -1,4 +1,3 @@
-
 /*
  * MIT License
  *
@@ -31,8 +30,12 @@ import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.provider
+import org.kodein.di.singleton
+
+const val IO_CONTEXT = "IOContext"
+const val IO_CONTEXT_SCOPE = "IOContextScope"
 
 fun DI.MainBuilder.coroutineModule() {
-    bind<CoroutineContext>("ioContext") with provider { Dispatchers.IO }
-    bind<CoroutineScope>("ioContextScope") with provider { CoroutineScope(instance("ioContext")) }
+    bind<CoroutineContext>(IO_CONTEXT) with provider { Dispatchers.IO }
+    bind<CoroutineScope>(IO_CONTEXT_SCOPE) with singleton { CoroutineScope(Dispatchers.IO) }
 }

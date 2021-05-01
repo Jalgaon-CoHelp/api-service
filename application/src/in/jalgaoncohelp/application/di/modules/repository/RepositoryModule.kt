@@ -1,4 +1,3 @@
-
 /*
  * MIT License
  *
@@ -24,9 +23,15 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.repository
 
+import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT
+import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT_SCOPE
 import `in`.jalgaoncohelp.core.mail.EmailRepository
 import `in`.jalgaoncohelp.core.taluka.TalukaRepository
+import `in`.jalgaoncohelp.core.user.UserRepository
+import `in`.jalgaoncohelp.core.userrole.UserRoleRepository
 import `in`.jalgaoncohelp.db.taluka.TalukaRepositoryImpl
+import `in`.jalgaoncohelp.db.user.UserRepositoryImpl
+import `in`.jalgaoncohelp.db.userrole.UserRoleRepositoryImpl
 import `in`.jalgaoncohelp.mail.EmailRepositoryImpl
 import org.kodein.di.DI
 import org.kodein.di.bind
@@ -36,12 +41,22 @@ import org.kodein.di.singleton
 fun DI.MainBuilder.repositoryModule() {
     bindTalukaRepository()
     bindEmailRepository()
+    bindUserRepository()
+    bindUserRoleRepository()
 }
 
 fun DI.MainBuilder.bindTalukaRepository() {
-    bind<TalukaRepository>() with singleton { TalukaRepositoryImpl(instance(), instance("ioContext")) }
+    bind<TalukaRepository>() with singleton { TalukaRepositoryImpl(instance(), instance(IO_CONTEXT)) }
 }
 
 fun DI.MainBuilder.bindEmailRepository() {
-    bind<EmailRepository>() with singleton { EmailRepositoryImpl(instance(), instance("ioContextScope")) }
+    bind<EmailRepository>() with singleton { EmailRepositoryImpl(instance(), instance(IO_CONTEXT_SCOPE)) }
+}
+
+fun DI.MainBuilder.bindUserRepository() {
+    bind<UserRepository>() with singleton { UserRepositoryImpl(instance(), instance(IO_CONTEXT)) }
+}
+
+fun DI.MainBuilder.bindUserRoleRepository() {
+    bind<UserRoleRepository>() with singleton { UserRoleRepositoryImpl(instance(), instance(IO_CONTEXT)) }
 }

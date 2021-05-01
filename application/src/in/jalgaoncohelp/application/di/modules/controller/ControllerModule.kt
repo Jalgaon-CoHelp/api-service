@@ -24,12 +24,16 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.controller
 
+import `in`.jalgaoncohelp.api.authentication.JwtController
 import `in`.jalgaoncohelp.api.taluka.TalukaController
+import `in`.jalgaoncohelp.api.volunteer.VolunteerController
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
 fun DI.MainBuilder.controllerModule() {
+    bind<JwtController>() with singleton { JwtController(instance()) }
     bind<TalukaController>() with singleton { TalukaController(instance()) }
+    bind<VolunteerController>() with singleton { VolunteerController(instance(), instance(), instance(), instance()) }
 }

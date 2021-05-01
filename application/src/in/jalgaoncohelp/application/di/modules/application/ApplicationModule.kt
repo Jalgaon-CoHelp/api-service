@@ -24,30 +24,52 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.application
 
+import `in`.jalgaoncohelp.api.authentication.JwtSpec
+import `in`.jalgaoncohelp.application.authentication.DefaultPasswordEncryptor
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
 import `in`.jalgaoncohelp.application.config.EmailConfig
+import `in`.jalgaoncohelp.application.config.JwtConfig
+import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import io.ktor.application.Application
 import io.ktor.config.ApplicationConfig
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.provider
+import org.kodein.di.singleton
 
 fun DI.MainBuilder.applicationModule(application: Application) {
     bindDatabaseConfig()
     bindEmailConfig()
     bindApplicationConfig(application)
+    bindJwtConfig()
+    bindJwtSpec()
+    bindPasswordEncrypter()
 }
 
 private fun DI.MainBuilder.bindDatabaseConfig() {
-    bind<DatabaseConfig>() with provider { DatabaseConfig(instance("database")) }
+    bind<DatabaseConfig>() with singleton { DatabaseConfig(instance("database")) }
 }
 
 private fun DI.MainBuilder.bindApplicationConfig(application: Application) {
     bind<ApplicationConfig>("database") with provider { application.environment.config.config("database") }
     bind<ApplicationConfig>("email") with provider { application.environment.config.config("email") }
+    bind<ApplicationConfig>("jwt") with provider { application.environment.config.config("jwt") }
 }
 
 private fun DI.MainBuilder.bindEmailConfig() {
-    bind<EmailConfig>() with provider { EmailConfig(instance("email")) }
+    bind<EmailConfig>() with singleton { EmailConfig(instance("email")) }
 }
+
+private fun DI.MainBuilder.bindPasswordEncrypter() {
+    bind<PasswordEncryptor>() with singleton { DefaultPasswordEncryptor(instance<JwtConfig>().secret) }
+}
+
+private fun DI.MainBuilder.bindJwtConfig() {
+    bind<JwtConfig>() with singleton { JwtConfig(instance("jwt")) }
+}
+
+private fun DI.MainBuilder.bindJwtSpec() {
+    bind<JwtSpec>() with singleton { instance<JwtConfig>().let { JwtSpec(it.secret, it.issuer, it.audience) } }
+}
+

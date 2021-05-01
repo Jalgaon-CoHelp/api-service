@@ -25,6 +25,7 @@
 package `in`.jalgaoncohelp.application.di.modules.datasource
 
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
+import `in`.jalgaoncohelp.application.di.modules.datasource.adapters.adaptersModule
 import `in`.jalgaoncohelp.db.DefaultDataSource
 import `in`.jalgaoncohelp.db.JalgaonCoHelpDatabase
 import com.squareup.sqldelight.db.SqlDriver
@@ -36,8 +37,9 @@ import org.kodein.di.instance
 import org.kodein.di.singleton
 
 fun DI.MainBuilder.dataSourceModule() {
+    adaptersModule()
     bindDataSource()
-    bindScalefleetDb()
+    bindDb()
 }
 
 private fun DI.MainBuilder.bindDataSource() {
@@ -47,7 +49,7 @@ private fun DI.MainBuilder.bindDataSource() {
     }
 }
 
-private fun DI.MainBuilder.bindScalefleetDb() {
+private fun DI.MainBuilder.bindDb() {
     bind<SqlDriver>() with singleton { instance<DataSource>().asJdbcDriver() }
     bind<JalgaonCoHelpDatabase>() with singleton { JalgaonCoHelpDatabase(instance()) }
 }

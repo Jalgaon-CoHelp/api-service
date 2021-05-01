@@ -27,15 +27,15 @@ package `in`.jalgaoncohelp.application.di.modules.datasource
 import org.kodein.di.DI
 
 fun DI.MainBuilder.sqlDelightModule() {
-//    bindSqlDelightTypeAdapters()
-//    bindSqlDelightAdapters()
+    bindSqlDelightTypeAdapters()
+    bindSqlDelightAdapters()
 }
 
-// fun DI.MainBuilder.bindSqlDelightAdapters() {
+ fun DI.MainBuilder.bindSqlDelightAdapters() {
 //    bind<Tasks.Adapter>() with singleton { Tasks.Adapter(instance(), instance(), instance()) }
-// }
+ }
 
-// fun DI.MainBuilder.bindSqlDelightTypeAdapters() {
+ fun DI.MainBuilder.bindSqlDelightTypeAdapters() {
 //    bind<ColumnAdapter<UUID, String>>() with singleton { UUIDAdapter.adapter }
 //    bind<ColumnAdapter<Location, String>>() with singleton { LocationAdapter.adapter }
-// }
+ }
