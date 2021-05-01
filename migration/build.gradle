@@ -13,7 +13,7 @@ mainClassName = "liquibase.integration.commandline.Main"
 
 def databaseHost = System.getenv("DATABASE_HOST") ?: "localhost"
 def databasePort = System.getenv("DATABASE_PORT") ?: "5432"
-def databaseName = System.getenv("DATABASE_NAME") ?: "scalefleet_dev"
+def databaseName = System.getenv("DATABASE_NAME") ?: "jalgaoncohelp_dev"
 def databaseUsername = System.getenv("DATABASE_USER") ?: "postgres"
 def databasePassword = System.getenv("DATABASE_PASSWORD") ?: "postgres"
 
