@@ -25,7 +25,7 @@
 package `in`.jalgaoncohelp.application.config
 
 import `in`.jalgaoncohelp.api.mainRoute
-import com.scalereal.scalefleet.application.di.initDi
+import `in`.jalgaoncohelp.application.di.initDi
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install

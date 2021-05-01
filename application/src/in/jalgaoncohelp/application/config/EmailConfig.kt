@@ -22,26 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.application.di
+package `in`.jalgaoncohelp.application.config
 
-import `in`.jalgaoncohelp.application.di.modules.application.applicationModule
-import `in`.jalgaoncohelp.application.di.modules.controller.controllerModule
-import `in`.jalgaoncohelp.application.di.modules.coroutine.coroutineModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.dataSourceModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.sqlDelightModule
-import `in`.jalgaoncohelp.application.di.modules.mail.emailConfigModule
-import `in`.jalgaoncohelp.application.di.modules.repository.repositoryModule
-import `in`.jalgaoncohelp.application.di.modules.service.serviceModule
-import io.ktor.application.Application
-import org.kodein.di.ktor.di
+import io.ktor.config.ApplicationConfig
+import io.ktor.util.KtorExperimentalAPI
 
-fun Application.initDi() = di {
-    applicationModule(this@initDi)
-    sqlDelightModule()
-    dataSourceModule()
-    emailConfigModule()
-    repositoryModule()
-    serviceModule()
-    controllerModule()
-    coroutineModule()
+@KtorExperimentalAPI
+class EmailConfig(config: ApplicationConfig) {
+    val email = config.property("email").getString()
+    val password = config.property("password").getString()
+    val host = config.property("host").getString()
+    val port = config.property("port").getString()
+    val senderName = config.property("senderName").getString()
 }

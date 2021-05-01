@@ -25,6 +25,7 @@
 package `in`.jalgaoncohelp.application.di.modules.application
 
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
+import `in`.jalgaoncohelp.application.config.EmailConfig
 import io.ktor.application.Application
 import io.ktor.config.ApplicationConfig
 import org.kodein.di.DI
@@ -34,6 +35,7 @@ import org.kodein.di.provider
 
 fun DI.MainBuilder.applicationModule(application: Application) {
     bindDatabaseConfig()
+    bindEmailConfig()
     bindApplicationConfig(application)
 }
 
@@ -43,4 +45,9 @@ private fun DI.MainBuilder.bindDatabaseConfig() {
 
 private fun DI.MainBuilder.bindApplicationConfig(application: Application) {
     bind<ApplicationConfig>("database") with provider { application.environment.config.config("database") }
+    bind<ApplicationConfig>("email") with provider { application.environment.config.config("email") }
+}
+
+private fun DI.MainBuilder.bindEmailConfig() {
+    bind<EmailConfig>() with provider { EmailConfig(instance("email")) }
 }

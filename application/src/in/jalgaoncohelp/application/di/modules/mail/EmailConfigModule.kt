@@ -22,26 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.application.di
+package `in`.jalgaoncohelp.application.di.modules.mail
 
-import `in`.jalgaoncohelp.application.di.modules.application.applicationModule
-import `in`.jalgaoncohelp.application.di.modules.controller.controllerModule
-import `in`.jalgaoncohelp.application.di.modules.coroutine.coroutineModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.dataSourceModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.sqlDelightModule
-import `in`.jalgaoncohelp.application.di.modules.mail.emailConfigModule
-import `in`.jalgaoncohelp.application.di.modules.repository.repositoryModule
-import `in`.jalgaoncohelp.application.di.modules.service.serviceModule
-import io.ktor.application.Application
-import org.kodein.di.ktor.di
+import `in`.jalgaoncohelp.mail.EmailConfig
+import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.singleton
 
-fun Application.initDi() = di {
-    applicationModule(this@initDi)
-    sqlDelightModule()
-    dataSourceModule()
-    emailConfigModule()
-    repositoryModule()
-    serviceModule()
-    controllerModule()
-    coroutineModule()
+fun DI.MainBuilder.emailConfigModule() {
+    bindEmailConfig()
+}
+
+private fun DI.MainBuilder.bindEmailConfig() {
+    bind<EmailConfig>() with singleton {
+        val databaseConfig = instance<`in`.jalgaoncohelp.application.config.EmailConfig>()
+        with(databaseConfig) { EmailConfig(email, password, host, port, senderName) }
+    }
 }

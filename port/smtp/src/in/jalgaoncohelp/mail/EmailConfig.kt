@@ -22,26 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.application.di
+package `in`.jalgaoncohelp.mail
 
-import `in`.jalgaoncohelp.application.di.modules.application.applicationModule
-import `in`.jalgaoncohelp.application.di.modules.controller.controllerModule
-import `in`.jalgaoncohelp.application.di.modules.coroutine.coroutineModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.dataSourceModule
-import `in`.jalgaoncohelp.application.di.modules.datasource.sqlDelightModule
-import `in`.jalgaoncohelp.application.di.modules.mail.emailConfigModule
-import `in`.jalgaoncohelp.application.di.modules.repository.repositoryModule
-import `in`.jalgaoncohelp.application.di.modules.service.serviceModule
-import io.ktor.application.Application
-import org.kodein.di.ktor.di
-
-fun Application.initDi() = di {
-    applicationModule(this@initDi)
-    sqlDelightModule()
-    dataSourceModule()
-    emailConfigModule()
-    repositoryModule()
-    serviceModule()
-    controllerModule()
-    coroutineModule()
-}
+class EmailConfig(
+    val email: String,
+    val password: String,
+    val host: String,
+    val port: String,
+    val senderName: String
+)
