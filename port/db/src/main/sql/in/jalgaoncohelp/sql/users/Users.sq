@@ -1,0 +1,50 @@
+import java.lang.String;
+import java.util.UUID;
+
+CREATE TABLE users
+(
+    id        SERIAL8 PRIMARY KEY,
+    name      VARCHAR     NOT NULL,
+    email     VARCHAR     NOT NULL,
+    phone     VARCHAR(15) NOT NULL,
+    password  VARCHAR     NOT NULL,
+    taluka_id INT         NOT NULL REFERENCES talukas (id),
+    created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+isEmailAlreadyExists:
+SELECT id FROM users WHERE email = ?;
+
+addUser:
+INSERT INTO users(name, email, phone, password, taluka_id) VALUES (?,?,?,?,?);
+
+findUserByEmail:
+SELECT id FROM users WHERE email = ? LIMIT 1;
+
+findUserById:
+SELECT users.id     AS user_id,
+       users.name,
+       users.email,
+       users.phone,
+       roles.name   AS role,
+       talukas.name AS taluka
+FROM users
+         INNER JOIN user_roles ON users.id = user_roles.user_id
+         INNER JOIN roles ON user_roles.role_id = roles.id
+         INNER JOIN talukas ON users.taluka_id = talukas.id
+WHERE users.id = ?
+LIMIT 1;
+
+findUserByEmailAndPassword:
+SELECT users.id     AS user_id,
+       users.name,
+       users.email,
+       users.phone,
+       roles.name   AS role,
+       talukas.name AS taluka
+FROM users
+         INNER JOIN user_roles ON users.id = user_roles.user_id
+         INNER JOIN roles ON user_roles.role_id = roles.id
+         INNER JOIN talukas ON users.taluka_id = talukas.id
+WHERE email = ? AND password = ?
+LIMIT 1;

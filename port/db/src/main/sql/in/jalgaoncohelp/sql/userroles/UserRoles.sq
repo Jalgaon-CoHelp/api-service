@@ -1,0 +1,9 @@
+CREATE TABLE user_roles
+(
+    id      SERIAL8 PRIMARY KEY,
+    user_id SERIAL8 NOT NULL REFERENCES users (id),
+    role_id    INT  NOT NULL REFERENCES roles (id)
+);
+
+addUserRole:
+INSERT INTO user_roles(user_id, role_id) VALUES(?,?);
