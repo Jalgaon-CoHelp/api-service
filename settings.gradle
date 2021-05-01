@@ -3,9 +3,9 @@ rootProject.name = 'jalgaoncohelp-api'
 include 'core'
 
 include 'port:db'
+include 'port:smtp'
 
 include 'api'
 
 include 'application'
 include 'migration'
-

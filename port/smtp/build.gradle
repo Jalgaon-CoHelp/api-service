@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":core")
+    implementation "javax.mail:mail:1.4.1"
+    implementation "javax.activation:activation:1.1.1"
+}
