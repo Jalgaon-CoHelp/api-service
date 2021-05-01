@@ -25,11 +25,14 @@
 package `in`.jalgaoncohelp.application.di.modules.coroutine
 
 import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.kodein.di.DI
 import org.kodein.di.bind
+import org.kodein.di.instance
 import org.kodein.di.provider
 
 fun DI.MainBuilder.coroutineModule() {
-    bind<CoroutineContext>("io") with provider { Dispatchers.IO }
+    bind<CoroutineContext>("ioContext") with provider { Dispatchers.IO }
+    bind<CoroutineScope>("ioContextScope") with provider { CoroutineScope(instance("ioContext")) }
 }
