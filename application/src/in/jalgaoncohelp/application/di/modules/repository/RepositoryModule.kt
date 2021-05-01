@@ -24,13 +24,24 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.repository
 
+import `in`.jalgaoncohelp.core.mail.EmailRepository
 import `in`.jalgaoncohelp.core.taluka.TalukaRepository
 import `in`.jalgaoncohelp.db.taluka.TalukaRepositoryImpl
+import `in`.jalgaoncohelp.mail.EmailRepositoryImpl
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
 
 fun DI.MainBuilder.repositoryModule() {
-    bind<TalukaRepository>() with singleton { TalukaRepositoryImpl(instance(), instance("io")) }
+    bindTalukaRepository()
+    bindEmailRepository()
+}
+
+fun DI.MainBuilder.bindTalukaRepository() {
+    bind<TalukaRepository>() with singleton { TalukaRepositoryImpl(instance(), instance("ioContext")) }
+}
+
+fun DI.MainBuilder.bindEmailRepository() {
+    bind<EmailRepository>() with singleton { EmailRepositoryImpl(instance(), instance("ioContextScope")) }
 }
