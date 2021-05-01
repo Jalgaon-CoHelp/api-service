@@ -25,11 +25,13 @@
 package `in`.jalgaoncohelp.api
 
 import `in`.jalgaoncohelp.api.taluka.TalukaRoute
+import `in`.jalgaoncohelp.api.volunteer.VolunteerRoute
 import io.ktor.routing.Route
 import io.ktor.routing.route
 
 fun Route.mainRoute() {
-    route("api") {
-        route("talukas") { TalukaRoute() }
+    route("/api") {
+        route("/talukas") { TalukaRoute() }
+        route("/volunteer") { VolunteerRoute() }
     }
 }
