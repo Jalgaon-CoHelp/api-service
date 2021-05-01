@@ -1,0 +1,6 @@
+CREATE TABLE roles
+(
+    id         SERIAL PRIMARY KEY,
+    name       VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
