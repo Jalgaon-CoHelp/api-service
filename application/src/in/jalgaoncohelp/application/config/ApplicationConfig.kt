@@ -84,7 +84,5 @@ fun Application.installRoutes() {
     routing { mainRoute() }
 }
 
-val Application.di get() = di()
-
 class AuthenticationException : RuntimeException()
 class AuthorizationException : RuntimeException()
