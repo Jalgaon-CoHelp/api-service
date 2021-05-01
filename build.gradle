@@ -70,9 +70,5 @@ subprojects {
             ktlint()
             licenseHeaderFile rootProject.file('spotless/copyright.kt')
         }
-        sql {
-            target '**/*.sql' // have to set manually
-            dbeaver()
-        }
     }
 }
