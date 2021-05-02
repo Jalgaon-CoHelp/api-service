@@ -44,5 +44,3 @@ fun Route.VolunteerRoute() {
         sendResponse(response)
     }
 }
-
-

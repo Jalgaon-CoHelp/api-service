@@ -1,4 +1,3 @@
-
 /*
  * MIT License
  *
@@ -40,7 +39,6 @@ import io.ktor.response.respond
 import io.ktor.routing.routing
 import io.ktor.serialization.json
 import kotlinx.serialization.json.Json
-import org.kodein.di.ktor.di
 
 fun Application.installDI() {
     initDi()

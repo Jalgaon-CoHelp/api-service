@@ -1,4 +1,3 @@
-
 /*
  * MIT License
  *
@@ -72,4 +71,3 @@ private fun DI.MainBuilder.bindJwtConfig() {
 private fun DI.MainBuilder.bindJwtSpec() {
     bind<JwtSpec>() with singleton { instance<JwtConfig>().let { JwtSpec(it.secret, it.issuer, it.audience) } }
 }
-

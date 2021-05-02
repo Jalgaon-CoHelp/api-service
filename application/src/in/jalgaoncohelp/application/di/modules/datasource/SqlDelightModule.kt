@@ -1,4 +1,3 @@
-
 /*
  * MIT License
  *
@@ -31,11 +30,11 @@ fun DI.MainBuilder.sqlDelightModule() {
     bindSqlDelightAdapters()
 }
 
- fun DI.MainBuilder.bindSqlDelightAdapters() {
+fun DI.MainBuilder.bindSqlDelightAdapters() {
 //    bind<Tasks.Adapter>() with singleton { Tasks.Adapter(instance(), instance(), instance()) }
- }
+}
 
- fun DI.MainBuilder.bindSqlDelightTypeAdapters() {
+fun DI.MainBuilder.bindSqlDelightTypeAdapters() {
 //    bind<ColumnAdapter<UUID, String>>() with singleton { UUIDAdapter.adapter }
 //    bind<ColumnAdapter<Location, String>>() with singleton { LocationAdapter.adapter }
- }
+}
