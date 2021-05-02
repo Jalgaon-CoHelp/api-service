@@ -40,15 +40,23 @@ class HospitalController(private val hospitalService: HospitalService) {
         Unsuccessful.Failed(e)
     }
 
-    suspend fun getRecentlyUpdatedHospitals(page: Long?, limit: Long?): Response = try {
-        val hospitals = hospitalService.getRecentlyUpdatedHospitals(Page(page ?: 0, limit ?: 10))
-            .let {
-                PagedHospitalResponse(
-                    it.records,
-                    it.pages,
-                    it.list.map { hospital -> HospitalResponse.from(hospital) }
-                )
-            }
+    suspend fun getHospitals(page: Long?, limit: Long?, talukaId: Int?, bedType: String?): Response = try {
+        val type = bedType?.let {
+            if (it.isNotBlank()) {
+                hospitalService.findHospitalBedType(it)
+            } else null
+        }
+        val hospitals = hospitalService.filterHospitals(
+            page = Page(page ?: 0, limit ?: 10),
+            talukaId = talukaId,
+            bedType = type
+        ).let {
+            PagedHospitalResponse(
+                it.records,
+                it.pages,
+                it.list.map { hospital -> HospitalResponse.from(hospital) }
+            )
+        }
         Success(hospitals)
     } catch (e: Exception) {
         Unsuccessful.Failed(e)
