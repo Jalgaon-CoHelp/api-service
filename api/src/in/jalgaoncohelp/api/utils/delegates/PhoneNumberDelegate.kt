@@ -29,7 +29,7 @@ import kotlin.reflect.KProperty
 class PhoneNumberDelegate(private var value: String) : ReadWriteProperty<Any?, String> {
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): String {
-        if (value.trim().length <= 5) {
+        if (value.trim().length < 5) {
             error("phone number is invalid")
         }
         return this.value
