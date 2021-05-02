@@ -23,6 +23,8 @@
  */
 package `in`.jalgaoncohelp.core.hospitals
 
+import `in`.jalgaoncohelp.core.exception.notFoundError
+import `in`.jalgaoncohelp.core.hospitals.model.BedType
 import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
@@ -31,11 +33,15 @@ import `in`.jalgaoncohelp.core.models.PagedList
 class HospitalService(private val repository: HospitalRepository) {
     suspend fun addHospital(hospitalParams: NewHospitalParams) = repository.addHospital(hospitalParams)
 
-    suspend fun getRecentlyUpdatedHospitals(page: Page): PagedList<Hospital> {
+    suspend fun filterHospitals(page: Page, talukaId: Int?, bedType: BedType?): PagedList<Hospital> {
         return PagedList(
-            records = repository.getTotalHospitalsCount(),
-            list = repository.getRecentlyUpdatedHospitals(page),
+            records = repository.getTotalHospitalsCount(talukaId, bedType),
+            list = repository.getRecentlyUpdatedHospitals(page, talukaId, bedType),
             limit = page.limit
         )
+    }
+
+    fun findHospitalBedType(type: String): BedType {
+        return BedType.values().find { it.type == type } ?: notFoundError("Bed not found with specified type")
     }
 }
