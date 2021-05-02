@@ -1,0 +1,42 @@
+CREATE TABLE hospitals
+(
+    id             SERIAL8 PRIMARY KEY,
+    name           VARCHAR   NOT NULL,
+    address        VARCHAR,
+    taluka_id      INT NOT NULL REFERENCES talukas (id),
+    contact_1      VARCHAR(15),
+    contact_2      VARCHAR(15),
+    bed_general    INT,
+    bed_oxygen     INT,
+    bed_icu        INT,
+    bed_ventilator INT,
+    created_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+addHospital:
+INSERT INTO hospitals(name, address, taluka_id, contact_1, contact_2, bed_general, bed_oxygen, bed_icu, bed_ventilator)
+VALUES(?,?,?,?,?,?,?,?,?);
+
+getRecentlyUpdatedHospitals:
+SELECT h.id,
+       h.name,
+       h.address,
+       h.taluka_id,
+       t.name AS taluka_name,
+       h.contact_1,
+       h.contact_2,
+       h.bed_general,
+       h.bed_oxygen,
+       h.bed_icu,
+       h.bed_ventilator,
+       h.created_at,
+       h.updated_at
+FROM hospitals h
+         INNER JOIN talukas t ON t.id = h.taluka_id
+ORDER BY updated_at DESC
+LIMIT :limit OFFSET :offset;
+
+getTotalHospitals:
+SELECT count(*) AS total_hospitals
+FROM hospitals;
