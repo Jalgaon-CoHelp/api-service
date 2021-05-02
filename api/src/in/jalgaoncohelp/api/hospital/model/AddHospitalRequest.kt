@@ -23,24 +23,46 @@
  */
 package `in`.jalgaoncohelp.api.hospital.model
 
+import `in`.jalgaoncohelp.api.utils.capitalize
+import `in`.jalgaoncohelp.api.utils.validPhoneNumber
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class AddHospitalRequest(
     val name: String,
-    val address: String?,
+    val address: String? = null,
     val talukaId: Int,
-    val contact1: String?,
-    val contact2: String?,
+    val contact1: String? = null,
+    val contact2: String? = null,
     val beds: Beds
 ) {
+    val hospitalName by capitalize(name)
+
+    val formattedAddress: String?
+        get() = address?.let {
+            val formattedAddress by capitalize(it)
+            return@let formattedAddress
+        }
+
+    val validatedContact1: String?
+        get() = contact1?.let {
+            val contact by validPhoneNumber(it)
+            return@let contact
+        }
+
+    val validatedContact2: String?
+        get() = contact2?.let {
+            val contact by validPhoneNumber(it)
+            return@let contact
+        }
+
     fun toHospitalParams() = NewHospitalParams(
-        name = name,
-        address = address,
+        name = hospitalName,
+        address = formattedAddress,
         talukaId = talukaId,
-        contact1 = contact1,
-        contact2 = contact2,
+        contact1 = validatedContact1,
+        contact2 = validatedContact2,
         beds = `in`.jalgaoncohelp.core.hospitals.model.Beds(
             general = beds.general,
             oxygen = beds.oxygen,
