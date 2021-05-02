@@ -8,5 +8,5 @@ CREATE TABLE users
     phone      VARCHAR(15) NOT NULL,
     password   VARCHAR     NOT NULL,
     taluka_id  INT         NOT NULL REFERENCES talukas (id),
-    created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMPTZ   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
