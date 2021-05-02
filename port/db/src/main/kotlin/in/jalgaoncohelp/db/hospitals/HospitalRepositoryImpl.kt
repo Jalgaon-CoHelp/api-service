@@ -80,7 +80,8 @@ HospitalRepositoryImpl(
         }.getOrElse { error("Failed to load hospitals") }
     }
 
-    override suspend fun getTotalHospitalsCount(): Long {
+    override suspend fun getTotalHospitalsCount(): Long = runCatching {
         return db.hospitalsQueries.getTotalHospitals().executeAsOne()
-    }
+    }.getOrDefault(0)
 }
+
