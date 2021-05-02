@@ -2,6 +2,6 @@ POST http://localhost:8080/api/volunteer/login
 Content-Type: application/json
 
 {
-  "email": "jalgaoncohelp@gmail.com",
+  "email": "loremipsum@gmail.com",
   "password": "OX7533"
 }

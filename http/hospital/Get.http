@@ -1,1 +1,1 @@
-GET http://localhost:8080/api/hospitals?page=2&limit=100
+GET http://localhost:8080/api/hospitals?page=0&limit=10&talukaId=2&bedType=general

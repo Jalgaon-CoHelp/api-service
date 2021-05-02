@@ -75,4 +75,3 @@ HospitalRepositoryImpl(
         return FilterRecentlyUpdatedHospitalsQuery(dataSource).countRecentlyUpdatedHospitals(talukaId, bedType)
     }.getOrDefault(0)
 }
-

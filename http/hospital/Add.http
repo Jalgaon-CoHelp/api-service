@@ -2,8 +2,8 @@ POST http://localhost:8080/api/hospitals/new
 Content-Type: application/json
 
 {
-  "name": "Piyush Hospital",
-  "address": "Bhangar Bazar",
+  "name": "Lorem Ipsum Covid Care",
+  "address": "Lorem Ipsum",
   "contact1": "3749878937",
   "contact2": "74837856793",
   "talukaId": 1,
