@@ -7,7 +7,7 @@ dependencies {
     implementation "org.postgresql:postgresql:$postgresVersion"
 }
 
-applicationName = "dph-db-migrate"
+applicationName = "jalgaoncohelp-db-migrate"
 
 mainClassName = "liquibase.integration.commandline.Main"
 
