@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/hospitals/new
+Content-Type: application/json
+
+{
+  "name": "Piyush Hospital",
+  "address": "Bhangar Bazar",
+  "contact1": "3749878937",
+  "contact2": "74837856793",
+  "talukaId": 1,
+  "beds": {
+    "general": 100,
+    "oxygen": 1,
+    "icu": 12,
+    "ventilator": 10
+  }
+}
