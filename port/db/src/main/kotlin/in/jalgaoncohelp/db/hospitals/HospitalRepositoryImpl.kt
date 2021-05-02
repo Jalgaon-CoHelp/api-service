@@ -24,23 +24,26 @@
 package `in`.jalgaoncohelp.db.hospitals
 
 import `in`.jalgaoncohelp.core.hospitals.HospitalRepository
-import `in`.jalgaoncohelp.core.hospitals.model.Beds
+import `in`.jalgaoncohelp.core.hospitals.model.BedType
 import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
-import `in`.jalgaoncohelp.core.taluka.model.Taluka
 import `in`.jalgaoncohelp.db.JalgaonCoHelpDatabase
+import `in`.jalgaoncohelp.db.hospitals.query.FilterRecentlyUpdatedHospitalsQuery
+import com.squareup.sqldelight.sqlite.driver.asJdbcDriver
+import javax.sql.DataSource
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.withContext
 
 class
 HospitalRepositoryImpl(
-    private val db: JalgaonCoHelpDatabase,
+    private val dataSource: DataSource,
     private val ioContext: CoroutineContext
 ) : HospitalRepository {
 
     override suspend fun addHospital(hospitalParams: NewHospitalParams) = withContext(ioContext) {
         runCatching {
+            val db = JalgaonCoHelpDatabase(dataSource.asJdbcDriver())
             db.hospitalsQueries.addHospital(
                 name = hospitalParams.name,
                 address = hospitalParams.address,
@@ -55,33 +58,21 @@ HospitalRepositoryImpl(
         }.getOrElse { error("Failed to add hospital") }
     }
 
-    override suspend fun getRecentlyUpdatedHospitals(page: Page): List<Hospital> = withContext(ioContext) {
+    override suspend fun getRecentlyUpdatedHospitals(
+        page: Page,
+        talukaId: Int?,
+        bedType: BedType?
+    ): List<Hospital> = withContext(ioContext) {
         runCatching {
-            db.hospitalsQueries.getRecentlyUpdatedHospitals(page.limit, page.offset)
-                .executeAsList()
-                .map {
-                    Hospital(
-                        id = it.id,
-                        name = it.name,
-                        address = it.address,
-                        taluka = Taluka(it.taluka_id, it.taluka_name),
-                        contact1 = it.contact_1,
-                        contact2 = it.contact_2,
-                        beds = Beds(
-                            general = it.bed_general,
-                            oxygen = it.bed_oxygen,
-                            icu = it.bed_icu,
-                            ventilator = it.bed_ventilator
-                        ),
-                        createdAt = it.created_at,
-                        updatedAt = it.updated_at
-                    )
-                }
-        }.getOrElse { error("Failed to load hospitals") }
+            FilterRecentlyUpdatedHospitalsQuery(dataSource).findRecentlyUpdatedHospitals(page, talukaId, bedType)
+        }.getOrElse {
+            it.printStackTrace()
+            error("Failed to load hospitals")
+        }
     }
 
-    override suspend fun getTotalHospitalsCount(): Long = runCatching {
-        return db.hospitalsQueries.getTotalHospitals().executeAsOne()
+    override suspend fun getTotalHospitalsCount(talukaId: Int?, bedType: BedType?): Long = runCatching {
+        return FilterRecentlyUpdatedHospitalsQuery(dataSource).countRecentlyUpdatedHospitals(talukaId, bedType)
     }.getOrDefault(0)
 }
 
