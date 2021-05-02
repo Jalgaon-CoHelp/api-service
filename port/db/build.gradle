@@ -27,4 +27,8 @@ dependencies {
 
     // PostgreSQL
     api "org.postgresql:postgresql:$postgresVersion"
+
+    // Hikari
+    api "com.zaxxer:HikariCP:$hikariVersion"
+
 }

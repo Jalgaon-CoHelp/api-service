@@ -17,6 +17,7 @@ ext {
 
     // DB
     postgresVersion = "42.2.18"
+    hikariVersion = "4.0.3"
 
     // SQLDelight
     sqlDelightVersion = '1.5.0'

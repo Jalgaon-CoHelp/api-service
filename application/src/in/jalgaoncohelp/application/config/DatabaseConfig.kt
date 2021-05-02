@@ -33,4 +33,6 @@ class DatabaseConfig(config: ApplicationConfig) {
     val database = config.property("database").getString()
     val user = config.property("user").getString()
     val password = config.property("password").getString()
+
+    val jdbcUrl: String get() = "jdbc:postgresql://$host:$port/$database"
 }

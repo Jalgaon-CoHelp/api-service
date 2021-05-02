@@ -44,7 +44,7 @@ fun DI.MainBuilder.dataSourceModule() {
 private fun DI.MainBuilder.bindDataSource() {
     bind<DataSource>() with singleton {
         val databaseConfig = instance<DatabaseConfig>()
-        with(databaseConfig) { DefaultDataSource("jdbc:postgresql://$host:$port/$database", user, password) }
+        with(databaseConfig) { DefaultDataSource(jdbcUrl, user, password) }
     }
 }
 

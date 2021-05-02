@@ -23,12 +23,12 @@
  */
 package `in`.jalgaoncohelp.db
 
-import org.postgresql.ds.PGSimpleDataSource
+import com.zaxxer.hikari.HikariDataSource
 
-class DefaultDataSource(databaseUrl: String, databaseUser: String, databasePassword: String) : PGSimpleDataSource() {
+class DefaultDataSource(databaseUrl: String, databaseUser: String, databasePassword: String) : HikariDataSource() {
     init {
-        setURL(databaseUrl)
-        user = databaseUser
+        jdbcUrl = databaseUrl
+        username = databaseUser
         password = databasePassword
     }
 }
