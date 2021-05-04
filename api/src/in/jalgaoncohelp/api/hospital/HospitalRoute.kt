@@ -43,8 +43,8 @@ fun Route.HospitalRoute() {
         val controller by closestDI().instance<HospitalController>()
         val page = call.request.queryParameters["page"]?.toLong()
         val limit = call.request.queryParameters["limit"]?.toLong()
-        val talukaId = call.request.queryParameters["talukaId"]?.toInt()
-        val bedType = call.request.queryParameters["bedType"]
+        val talukaId = runCatching { call.request.queryParameters["talukaId"]?.toInt() }.getOrNull()
+        val bedType = runCatching { call.request.queryParameters["bedType"] }.getOrNull()
         val response = controller.getHospitals(page, limit, talukaId, bedType)
         sendResponse(response)
     }
