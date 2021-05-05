@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.application.config
 
 import `in`.jalgaoncohelp.api.mainRoute
+import `in`.jalgaoncohelp.api.model.unsuccessfulResponse
 import `in`.jalgaoncohelp.application.di.initDi
 import io.ktor.application.Application
 import io.ktor.application.call
@@ -74,6 +75,13 @@ fun Application.installStatusPage() {
         }
         exception<AuthorizationException> {
             call.respond(HttpStatusCode.Forbidden)
+        }
+        exception<IllegalStateException> {
+            call.respond(HttpStatusCode.BadRequest, unsuccessfulResponse(it.message))
+        }
+        exception<IllegalArgumentException> {
+
+            call.respond(HttpStatusCode.BadRequest, unsuccessfulResponse(it.toString()))
         }
     }
 }
