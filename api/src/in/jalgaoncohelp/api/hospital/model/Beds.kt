@@ -33,6 +33,16 @@ data class Beds(
     val icu: Int?,
     val ventilator: Int?
 ) {
+    init {
+        listOf(general, oxygen, icu, ventilator).forEach { count ->
+            count?.let {
+                if (count <= -1) {
+                    error("Bed count can't be negative")
+                }
+            }
+        }
+    }
+
     companion object {
         fun from(beds: CoreBed) = Beds(
             beds.general,
