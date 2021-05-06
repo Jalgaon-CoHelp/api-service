@@ -23,9 +23,10 @@
  */
 package `in`.jalgaoncohelp.core.resources.model
 
-enum class Resource(val id: Int) {
-    Bed(1),
-    Oxygen(2),
-    Plasma(3),
-    Other(4)
+enum class Resource(val code: String) {
+    Bed("bed"),
+    Oxygen("oxygen"),
+    Plasma("plasma"),
+    Oximeter("oximeter"),
+    Other("other")
 }

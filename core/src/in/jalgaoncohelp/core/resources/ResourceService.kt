@@ -30,11 +30,7 @@ class ResourceService {
 
     val resources: List<Resource> get() = Resource.values().toList()
 
-    fun findResourceById(id: Int): Resource {
-        return Resource.values().find { it.id == id } ?: notFoundError("Resource not exists with this ID")
-    }
-
-    fun findResourceByName(name: String): Resource {
-        return Resource.values().find { it.name == name } ?: notFoundError("Resource not exists with this name")
+    fun findResourceByCode(code: String): Resource {
+        return resources.find { it.code == code } ?: notFoundError("Resource not exists with this code")
     }
 }
