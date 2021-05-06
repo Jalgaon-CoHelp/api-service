@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.core.resources.model
+package `in`.jalgaoncohelp.core.resource.model
 
-enum class Resource(val code: String) {
+enum class ResourceType(val code: String) {
     Bed("bed"),
     Oxygen("oxygen"),
     Plasma("plasma"),

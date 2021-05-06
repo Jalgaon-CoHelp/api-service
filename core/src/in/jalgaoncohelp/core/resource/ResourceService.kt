@@ -24,13 +24,13 @@
 package `in`.jalgaoncohelp.core.resources
 
 import `in`.jalgaoncohelp.core.exception.notFoundError
-import `in`.jalgaoncohelp.core.resources.model.Resource
+import `in`.jalgaoncohelp.core.resource.model.ResourceType
 
 class ResourceService {
 
-    val resources: List<Resource> get() = Resource.values().toList()
+    val resourceTypes: List<ResourceType> get() = ResourceType.values().toList()
 
-    fun findResourceByCode(code: String): Resource {
-        return resources.find { it.code == code } ?: notFoundError("Resource not exists with this code")
+    fun findResourceByCode(code: String): ResourceType {
+        return resourceTypes.find { it.code == code } ?: notFoundError("Resource not exists with this code")
     }
 }
