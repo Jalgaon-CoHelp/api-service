@@ -1,10 +1,9 @@
 CREATE TABLE resources
 (
     id            SERIAL8 PRIMARY KEY,
-    type          VARCHAR(20),
     contact_name  VARCHAR     NOT NULL,
     mobile_number VARCHAR(15) NOT NULL,
-    resource_name VARCHAR     NOT NULL,
+    resource_type VARCHAR(50) NOT NULL,
     address       VARCHAR,
     taluka_id     INT         NOT NULL REFERENCES talukas (id),
     note          VARCHAR,
@@ -12,5 +11,5 @@ CREATE TABLE resources
 );
 
 addResource:
-INSERT INTO resources(type, contact_name, mobile_number, resource_name, address, taluka_id, note)
-VALUES(?,?,?,?,?,?,?);
+INSERT INTO resources(contact_name, mobile_number, resource_type, address, taluka_id, note)
+VALUES(?,?,?,?,?,?);
