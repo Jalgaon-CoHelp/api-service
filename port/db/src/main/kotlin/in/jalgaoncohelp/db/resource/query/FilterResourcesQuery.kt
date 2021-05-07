@@ -1,3 +1,26 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 Jalgaon CoHelp
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package `in`.jalgaoncohelp.db.resource.query
 
 import `in`.jalgaoncohelp.core.models.Page
@@ -9,13 +32,12 @@ import `in`.jalgaoncohelp.db.utils.query
 import `in`.jalgaoncohelp.db.utils.whereQueryAndParams
 import javax.sql.DataSource
 
-
 class FilterResourcesQuery(private val dataSource: DataSource) {
     fun find(
         page: Page,
         type: String? = null,
         resourceName: String? = null,
-        talukaId: Int? = null,
+        talukaId: Int? = null
     ): List<Resource> {
         val (query, params) = generateQueryAndParams(page, type, resourceName, talukaId)
 
@@ -89,7 +111,7 @@ class FilterResourcesQuery(private val dataSource: DataSource) {
     fun count(
         type: String? = null,
         resourceName: String? = null,
-        talukaId: Int? = null,
+        talukaId: Int? = null
     ): Long {
         val (countQuery, params) = countQuery(type, resourceName, talukaId)
         val resultSet = dataSource.query(countQuery, *params)
@@ -103,7 +125,7 @@ class FilterResourcesQuery(private val dataSource: DataSource) {
     private fun countQuery(
         type: String? = null,
         resourceName: String? = null,
-        talukaId: Int? = null,
+        talukaId: Int? = null
     ): QueryAndParams {
         val (whereQuery, params) = whereQueryAndParams(type, resourceName, talukaId)
         val query = """
@@ -118,7 +140,7 @@ class FilterResourcesQuery(private val dataSource: DataSource) {
     fun whereQueryAndParams(
         type: String? = null,
         resourceName: String? = null,
-        talukaId: Int? = null,
+        talukaId: Int? = null
     ) = whereQueryAndParams(
         "r.type" to type,
         "r.resource_name" to resourceName,

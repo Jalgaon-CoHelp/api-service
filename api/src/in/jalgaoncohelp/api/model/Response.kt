@@ -41,4 +41,4 @@ sealed class Unsuccessful(e: Throwable, statusCode: HttpStatusCode) : Response(s
     class UnsuccessfulResponse(val message: String)
 }
 
-fun unsuccessfulResponse(message:String?) = Unsuccessful.UnsuccessfulResponse(message ?: "Unknown error occurred!")
+fun unsuccessfulResponse(message: String?) = Unsuccessful.UnsuccessfulResponse(message ?: "Unknown error occurred!")
