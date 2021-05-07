@@ -29,7 +29,7 @@ import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
 import `in`.jalgaoncohelp.db.JalgaonCoHelpDatabase
-import `in`.jalgaoncohelp.db.hospitals.query.FilterRecentlyUpdatedHospitalsQuery
+import `in`.jalgaoncohelp.db.hospitals.query.FilterHospitalsQuery
 import com.squareup.sqldelight.sqlite.driver.asJdbcDriver
 import javax.sql.DataSource
 import kotlin.coroutines.CoroutineContext
@@ -64,7 +64,7 @@ HospitalRepositoryImpl(
         bedType: BedType?
     ): List<Hospital> = withContext(ioContext) {
         runCatching {
-            FilterRecentlyUpdatedHospitalsQuery(dataSource).findRecentlyUpdatedHospitals(page, talukaId, bedType)
+            FilterHospitalsQuery(dataSource).filter(page, talukaId, bedType)
         }.getOrElse {
             it.printStackTrace()
             error("Failed to load hospitals")
@@ -72,6 +72,6 @@ HospitalRepositoryImpl(
     }
 
     override suspend fun getTotalHospitalsCount(talukaId: Int?, bedType: BedType?): Long = runCatching {
-        return FilterRecentlyUpdatedHospitalsQuery(dataSource).countRecentlyUpdatedHospitals(talukaId, bedType)
+        return FilterHospitalsQuery(dataSource).count(talukaId, bedType)
     }.getOrDefault(0)
 }

@@ -31,9 +31,9 @@ import `in`.jalgaoncohelp.core.taluka.model.Taluka
 import `in`.jalgaoncohelp.db.utils.query
 import javax.sql.DataSource
 
-class FilterRecentlyUpdatedHospitalsQuery(private val dataSource: DataSource) {
+class FilterHospitalsQuery(private val dataSource: DataSource) {
 
-    fun findRecentlyUpdatedHospitals(page: Page, talukaId: Int?, bedType: BedType?): List<Hospital> {
+    fun filter(page: Page, talukaId: Int?, bedType: BedType?): List<Hospital> {
         val findQuery = findQuery(page, talukaId, bedType)
 
         val resultSet = dataSource.query(findQuery)
@@ -71,7 +71,7 @@ class FilterRecentlyUpdatedHospitalsQuery(private val dataSource: DataSource) {
         return hospitals
     }
 
-    fun countRecentlyUpdatedHospitals(talukaId: Int?, bedType: BedType?): Long {
+    fun count(talukaId: Int?, bedType: BedType?): Long {
         val countQuery = countQuery(talukaId, bedType)
         val resultSet = dataSource.query(countQuery)
 
