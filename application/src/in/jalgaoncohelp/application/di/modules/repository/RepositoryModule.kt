@@ -27,10 +27,12 @@ import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT
 import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT_SCOPE
 import `in`.jalgaoncohelp.core.hospitals.HospitalRepository
 import `in`.jalgaoncohelp.core.mail.EmailRepository
+import `in`.jalgaoncohelp.core.resource.ResourceRepository
 import `in`.jalgaoncohelp.core.taluka.TalukaRepository
 import `in`.jalgaoncohelp.core.user.UserRepository
 import `in`.jalgaoncohelp.core.userrole.UserRoleRepository
 import `in`.jalgaoncohelp.db.hospitals.HospitalRepositoryImpl
+import `in`.jalgaoncohelp.db.resource.ResourceRepositoryImpl
 import `in`.jalgaoncohelp.db.taluka.TalukaRepositoryImpl
 import `in`.jalgaoncohelp.db.user.UserRepositoryImpl
 import `in`.jalgaoncohelp.db.userrole.UserRoleRepositoryImpl
@@ -46,6 +48,7 @@ fun DI.MainBuilder.repositoryModule() {
     bindUserRepository()
     bindUserRoleRepository()
     bindHospitalRepository()
+    bindResourceRepository()
 }
 
 fun DI.MainBuilder.bindTalukaRepository() {
@@ -66,4 +69,8 @@ fun DI.MainBuilder.bindUserRoleRepository() {
 
 fun DI.MainBuilder.bindHospitalRepository() {
     bind<HospitalRepository>() with singleton { HospitalRepositoryImpl(instance(), instance(IO_CONTEXT)) }
+}
+
+fun DI.MainBuilder.bindResourceRepository() {
+    bind<ResourceRepository>() with singleton { ResourceRepositoryImpl(instance(), instance(IO_CONTEXT)) }
 }

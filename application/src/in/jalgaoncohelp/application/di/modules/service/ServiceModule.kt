@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.application.di.modules.service
 
 import `in`.jalgaoncohelp.core.hospitals.HospitalService
+import `in`.jalgaoncohelp.core.resource.ResourceService
 import `in`.jalgaoncohelp.core.taluka.TalukaService
 import `in`.jalgaoncohelp.core.user.UserService
 import org.kodein.di.DI
@@ -35,4 +36,5 @@ fun DI.MainBuilder.serviceModule() {
     bind<TalukaService>() with singleton { TalukaService(instance()) }
     bind<UserService>() with singleton { UserService(instance()) }
     bind<HospitalService>() with singleton { HospitalService(instance()) }
+    bind<ResourceService>() with singleton { ResourceService(instance()) }
 }
