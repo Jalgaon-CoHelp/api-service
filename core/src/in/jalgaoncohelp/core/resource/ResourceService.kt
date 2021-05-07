@@ -21,16 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.core.resources
+package `in`.jalgaoncohelp.core.resource
 
-import `in`.jalgaoncohelp.core.exception.notFoundError
+import `in`.jalgaoncohelp.core.models.Page
+import `in`.jalgaoncohelp.core.models.PagedList
+import `in`.jalgaoncohelp.core.resource.model.NewResourceParams
+import `in`.jalgaoncohelp.core.resource.model.Resource
+import `in`.jalgaoncohelp.core.resource.model.ResourceName
 import `in`.jalgaoncohelp.core.resource.model.ResourceType
 
-class ResourceService {
+class ResourceService(private val resourceRepository: ResourceRepository) {
+    suspend fun addResource(params: NewResourceParams): Unit = resourceRepository.addResource(params)
 
-    val resourceTypes: List<ResourceType> get() = ResourceType.values().toList()
-
-    fun findResourceByCode(code: String): ResourceType {
-        return resourceTypes.find { it.code == code } ?: notFoundError("Resource not exists with this code")
+    suspend fun filterResources(
+        page: Page,
+        type: ResourceType?,
+        resource: ResourceName?,
+        talukaId: Int?
+    ): PagedList<Resource> {
+        return PagedList(
+            records = resourceRepository.countResources(type, resource, talukaId),
+            list = resourceRepository.findResources(page, type, resource, talukaId),
+            limit = page.limit
+        )
     }
 }
