@@ -29,10 +29,11 @@ import kotlin.reflect.KProperty
 class MobileNumberDelegate(private var value: String) : ReadWriteProperty<Any?, String> {
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): String {
-        if (value.trim().length != 10) {
+        val trimmedValue = value.trim()
+        if (trimmedValue.length != 10) {
             error("phone is invalid mobile number")
         }
-        return this.value
+        return trimmedValue
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: String) {
