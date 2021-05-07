@@ -1,0 +1,1 @@
+GET http://localhost:8080/api/resources?page=0&limit=10&type=supply&resource=oximeter&talukaId=1

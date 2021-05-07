@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/resources/request
+Content-Type: application/json
+
+{
+  "contactName": "shreyas",
+  "mobileNumber": "7767084933",
+  "address": "near market area, jalgaon",
+  "resourceName": "oxygen",
+  "talukaId": 1,
+  "note": "Lorem Ipsum"
+}
