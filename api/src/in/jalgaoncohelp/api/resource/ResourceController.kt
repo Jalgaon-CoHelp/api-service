@@ -23,10 +23,10 @@
  */
 package `in`.jalgaoncohelp.api.resource
 
-import AddRequestResourceRequest
 import `in`.jalgaoncohelp.api.model.Response
 import `in`.jalgaoncohelp.api.model.Success
 import `in`.jalgaoncohelp.api.model.Unsuccessful
+import `in`.jalgaoncohelp.api.resource.model.AddRequestResourceRequest
 import `in`.jalgaoncohelp.api.resource.model.AddSupplierResourceRequest
 import `in`.jalgaoncohelp.api.resource.model.PagedResourceResponse
 import `in`.jalgaoncohelp.api.resource.model.ResourceResponse
