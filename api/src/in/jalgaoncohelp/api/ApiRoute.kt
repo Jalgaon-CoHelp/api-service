@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.api
 
 import `in`.jalgaoncohelp.api.hospital.HospitalRoute
+import `in`.jalgaoncohelp.api.resource.ResourceRoute
 import `in`.jalgaoncohelp.api.taluka.TalukaRoute
 import `in`.jalgaoncohelp.api.volunteer.VolunteerRoute
 import io.ktor.routing.Route
@@ -32,7 +33,8 @@ import io.ktor.routing.route
 fun Route.mainRoute() {
     route("/api") {
         route("/talukas") { TalukaRoute() }
-        route("/volunteer") { VolunteerRoute() }
+        route("/volunteers") { VolunteerRoute() }
         route("/hospitals") { HospitalRoute() }
+        route("/resources") { ResourceRoute() }
     }
 }
