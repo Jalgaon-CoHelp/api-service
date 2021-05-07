@@ -1,4 +1,4 @@
-POST http://localhost:8080/api/volunteer/login
+POST http://localhost:8080/api/volunteers/login
 Content-Type: application/json
 
 {
