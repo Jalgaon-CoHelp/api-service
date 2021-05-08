@@ -23,7 +23,7 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.application
 
-import `in`.jalgaoncohelp.api.authentication.JwtSpec
+import `in`.jalgaoncohelp.api.authentication.jwt.JwtSpec
 import `in`.jalgaoncohelp.application.authentication.DefaultPasswordEncryptor
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
 import `in`.jalgaoncohelp.application.config.EmailConfig
