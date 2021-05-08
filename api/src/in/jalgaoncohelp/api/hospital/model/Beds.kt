@@ -43,12 +43,19 @@ data class Beds(
         }
     }
 
+    fun toBedModel() = `in`.jalgaoncohelp.core.hospitals.model.Beds(
+        general = general,
+        oxygen = oxygen,
+        icu = icu,
+        ventilator = ventilator
+    )
+
     companion object {
         fun from(beds: CoreBed) = Beds(
-            beds.general,
-            beds.oxygen,
-            beds.icu,
-            beds.ventilator
+            general = beds.general,
+            oxygen = beds.oxygen,
+            icu = beds.icu,
+            ventilator = beds.ventilator
         )
     }
 }

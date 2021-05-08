@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.api.hospital
 
 import `in`.jalgaoncohelp.api.hospital.model.AddHospitalRequest
+import `in`.jalgaoncohelp.api.hospital.model.Beds
 import `in`.jalgaoncohelp.api.hospital.model.HospitalResponse
 import `in`.jalgaoncohelp.api.hospital.model.PagedHospitalResponse
 import `in`.jalgaoncohelp.api.model.Response
@@ -58,6 +59,13 @@ class HospitalController(private val hospitalService: HospitalService) {
             )
         }
         Success(hospitals)
+    } catch (e: Exception) {
+        Unsuccessful.Failed(e)
+    }
+
+    suspend fun updateHospitalBeds(hospitalId: Long, updatedBeds: Beds): Response = try {
+        hospitalService.updateHospitalBedsById(hospitalId, updatedBeds.toBedModel())
+        Success("OK")
     } catch (e: Exception) {
         Unsuccessful.Failed(e)
     }
