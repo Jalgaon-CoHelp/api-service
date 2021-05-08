@@ -61,7 +61,9 @@ class ResourceController(private val resourceService: ResourceService) {
         val resources = resourceService.filterResources(
             page = Page(page = page ?: 0, limit = limit ?: 10),
             type = type?.let { ResourceType.byCode(it) },
-            resource = resource?.let { ResourceName.byCode(it) },
+            resource = resource?.let {
+                if (it.isNotBlank()) ResourceName.byCode(it) else null
+            },
             talukaId = talukaId
         ).let {
             PagedResourceResponse(
