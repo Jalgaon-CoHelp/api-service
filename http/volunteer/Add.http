@@ -1,9 +1,9 @@
-POST http://localhost:8080/api/volunteers/new
+POST http://localhost:8080/api/users/volunteers/new
 Content-Type: application/json
 
 {
-  "name": "Shreyas Patil",
-  "email": "jalgaoncohelp@gmail.com",
-  "mobile": "7767084933",
+  "name": "Shreyas Patil A",
+  "email": "shreyaspatiladmin@gmail.com",
+  "mobile": "1111111111",
   "talukaId": 1
 }
