@@ -34,7 +34,7 @@ class JwtController(private val spec: JwtSpec) {
     val verifier: JWTVerifier = JWT
         .require(algorithm)
         .withIssuer(spec.issuer)
-        .withAudience(spec.issuer)
+        .withAudience(spec.audience)
         .build()
 
     /**
