@@ -25,6 +25,7 @@ package `in`.jalgaoncohelp.db.hospitals
 
 import `in`.jalgaoncohelp.core.hospitals.HospitalRepository
 import `in`.jalgaoncohelp.core.hospitals.model.BedType
+import `in`.jalgaoncohelp.core.hospitals.model.Beds
 import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
@@ -35,15 +36,15 @@ import javax.sql.DataSource
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.withContext
 
-class
-HospitalRepositoryImpl(
+class HospitalRepositoryImpl(
     private val dataSource: DataSource,
     private val ioContext: CoroutineContext
 ) : HospitalRepository {
 
+    private val db = JalgaonCoHelpDatabase(dataSource.asJdbcDriver())
+
     override suspend fun addHospital(hospitalParams: NewHospitalParams) = withContext(ioContext) {
         runCatching {
-            val db = JalgaonCoHelpDatabase(dataSource.asJdbcDriver())
             db.hospitalsQueries.addHospital(
                 name = hospitalParams.name,
                 address = hospitalParams.address,
@@ -74,4 +75,14 @@ HospitalRepositoryImpl(
     override suspend fun getTotalHospitalsCount(talukaId: Int?, bedType: BedType?): Long = runCatching {
         return FilterHospitalsQuery(dataSource).count(talukaId, bedType)
     }.getOrDefault(0)
+
+    override suspend fun updateHospitalBedsById(hospitalId: Long, beds: Beds) {
+        db.hospitalsQueries.updateBedsById(
+            hospitalId = hospitalId,
+            bed_general = beds.general,
+            bed_oxygen = beds.oxygen,
+            bed_icu = beds.icu,
+            bed_ventilator = beds.ventilator
+        )
+    }
 }

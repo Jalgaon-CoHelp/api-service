@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.core.hospitals
 
 import `in`.jalgaoncohelp.core.hospitals.model.BedType
+import `in`.jalgaoncohelp.core.hospitals.model.Beds
 import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
@@ -32,4 +33,5 @@ interface HospitalRepository {
     suspend fun addHospital(hospitalParams: NewHospitalParams)
     suspend fun getRecentlyUpdatedHospitals(page: Page, talukaId: Int?, bedType: BedType?): List<Hospital>
     suspend fun getTotalHospitalsCount(talukaId: Int?, bedType: BedType?): Long
+    suspend fun updateHospitalBedsById(hospitalId: Long, beds: Beds)
 }
