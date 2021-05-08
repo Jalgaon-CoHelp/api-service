@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.api.volunteer
+package `in`.jalgaoncohelp.api.user
 
 import `in`.jalgaoncohelp.api.utils.sendResponse
 import io.ktor.application.call

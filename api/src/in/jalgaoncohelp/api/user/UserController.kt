@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.api.volunteer
+package `in`.jalgaoncohelp.api.user
 
 import `in`.jalgaoncohelp.api.authentication.JwtController
 import `in`.jalgaoncohelp.api.model.Response
 import `in`.jalgaoncohelp.api.model.Success
 import `in`.jalgaoncohelp.api.model.Unsuccessful
-import `in`.jalgaoncohelp.api.volunteer.model.LoginVolunteerRequest
-import `in`.jalgaoncohelp.api.volunteer.model.LoginVolunteerResponse
-import `in`.jalgaoncohelp.api.volunteer.model.NewVolunteerRequest
+import `in`.jalgaoncohelp.api.user.model.LoginRequest
+import `in`.jalgaoncohelp.api.user.model.LoginResponse
+import `in`.jalgaoncohelp.api.user.model.NewVolunteerRequest
 import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import `in`.jalgaoncohelp.core.user.UserService
 import `in`.jalgaoncohelp.core.volunteer.AddVolunteer
@@ -48,14 +48,14 @@ class UserController(
         Unsuccessful.Failed(e)
     }
 
-    suspend fun signInWithEmailAndPassword(login: LoginVolunteerRequest): Response = try {
+    suspend fun signInWithEmailAndPassword(login: LoginRequest): Response = try {
         val email = login.email
         val password = passwordEncryptor.encrypt(login.password)
 
         val user = userService.findUserByEmailAndPassword(email, password)
         val token = jwtController.sign(user.email)
 
-        Success(LoginVolunteerResponse(token))
+        Success(LoginResponse(token))
     } catch (e: Exception) {
         e.printStackTrace()
         Unsuccessful.Unauth()
