@@ -25,6 +25,8 @@ package `in`.jalgaoncohelp.core.volunteer
 
 import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import `in`.jalgaoncohelp.core.mail.EmailRepository
+import `in`.jalgaoncohelp.core.roles.Role
+import `in`.jalgaoncohelp.core.roles.RoleRepository
 import `in`.jalgaoncohelp.core.user.UserService
 import `in`.jalgaoncohelp.core.userrole.UserRoleRepository
 import `in`.jalgaoncohelp.core.utils.generatePassword
@@ -32,6 +34,7 @@ import `in`.jalgaoncohelp.core.utils.generatePassword
 class AddVolunteer(
     private val userService: UserService,
     private val userRoleRepository: UserRoleRepository,
+    private val roleRepository: RoleRepository,
     private val emailRepository: EmailRepository,
     private val passwordEncryptor: PasswordEncryptor
 ) {
@@ -48,12 +51,11 @@ class AddVolunteer(
         val encryptedPassword = passwordEncryptor.encrypt(plainPassword)
 
         userService.addUser(name, email, phone, encryptedPassword, talukaId)
-        val id = userService.findUserByEmail(email)
-        // Hardcoding volunteer ID as of now.
-        // Later on, If multiple roles exists, this should be moved to the RoleService.
-        val volunteerRoleId = 1
 
-        userRoleRepository.addUserRole(id, volunteerRoleId)
+        val userId = userService.findUserIdByEmail(email)
+        val volunteerRoleId = roleRepository.findRoleInfo(Role.Volunteer).id
+
+        userRoleRepository.addUserRole(userId, volunteerRoleId)
 
         sendCredentialsOverEmail(name, email, plainPassword)
     }
