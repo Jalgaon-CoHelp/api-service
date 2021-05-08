@@ -80,4 +80,3 @@ fun Application.installStatusPage() {
 fun Application.installRoutes() {
     routing { mainRoute() }
 }
-
