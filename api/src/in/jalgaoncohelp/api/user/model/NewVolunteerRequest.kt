@@ -21,17 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.api.volunteer.model
+package `in`.jalgaoncohelp.api.user.model
 
+import `in`.jalgaoncohelp.api.utils.trimmed
+import `in`.jalgaoncohelp.api.utils.validEmail
+import `in`.jalgaoncohelp.api.utils.validMobileNumber
 import kotlinx.serialization.Serializable
 
 @Serializable
-class LoginVolunteerRequest(
-    val email: String,
-    val password: String
-)
-
-@Serializable
-class LoginVolunteerResponse(
-    val token: String
-)
+class NewVolunteerRequest(
+    private val name: String,
+    private val email: String,
+    private val mobile: String,
+    val talukaId: Int
+) {
+    val validName by trimmed(name)
+    val validEmail by validEmail(email)
+    val validMobile by validMobileNumber(mobile)
+}
