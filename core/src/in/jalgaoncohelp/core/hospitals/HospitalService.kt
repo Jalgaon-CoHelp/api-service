@@ -25,6 +25,7 @@ package `in`.jalgaoncohelp.core.hospitals
 
 import `in`.jalgaoncohelp.core.exception.notFoundError
 import `in`.jalgaoncohelp.core.hospitals.model.BedType
+import `in`.jalgaoncohelp.core.hospitals.model.Beds
 import `in`.jalgaoncohelp.core.hospitals.model.Hospital
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import `in`.jalgaoncohelp.core.models.Page
@@ -39,6 +40,10 @@ class HospitalService(private val repository: HospitalRepository) {
             list = repository.getRecentlyUpdatedHospitals(page, talukaId, bedType),
             limit = page.limit
         )
+    }
+
+    suspend fun updateHospitalBedsById(hospitalId: Long, beds: Beds) {
+        repository.updateHospitalBedsById(hospitalId,beds)
     }
 
     fun findHospitalBedType(type: String): BedType {
