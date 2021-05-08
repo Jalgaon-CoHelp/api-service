@@ -4,3 +4,7 @@ CREATE TABLE roles
     name       VARCHAR(30) NOT NULL,
     created_at TIMESTAMP   NOT NULL
 );
+
+findRoleByName:
+SELECT * FROM roles
+WHERE name = ?;
