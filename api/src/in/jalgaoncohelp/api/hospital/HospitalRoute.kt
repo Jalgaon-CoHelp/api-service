@@ -23,20 +23,37 @@
  */
 package `in`.jalgaoncohelp.api.hospital
 
+import `in`.jalgaoncohelp.api.authentication.UserPermissions
+import `in`.jalgaoncohelp.api.authentication.handler.authorize
 import `in`.jalgaoncohelp.api.utils.sendResponse
 import io.ktor.application.call
+import io.ktor.auth.authenticate
 import io.ktor.request.receive
 import io.ktor.routing.Route
 import io.ktor.routing.get
 import io.ktor.routing.post
+import io.ktor.routing.put
 import org.kodein.di.instance
 import org.kodein.di.ktor.closestDI
 
 fun Route.HospitalRoute() {
-    post("/new") {
-        val controller by closestDI().instance<HospitalController>()
-        val response = controller.addHospital(addHospitalRequest = call.receive())
-        sendResponse(response)
+    authenticate {
+        post("/") {
+            authorize(UserPermissions.Hospital.CreateNew) {
+                val controller by closestDI().instance<HospitalController>()
+                val response = controller.addHospital(addHospitalRequest = call.receive())
+                sendResponse(response)
+            }
+        }
+
+        put("/{id}/beds") {
+            authorize(UserPermissions.Hospital.UpdateBeds) {
+                val controller by closestDI().instance<HospitalController>()
+                val hospitalId = call.parameters["id"]!!.toLong()
+                val response = controller.updateHospitalBeds(hospitalId, updatedBeds = call.receive())
+                sendResponse(response)
+            }
+        }
     }
 
     get("/") {
