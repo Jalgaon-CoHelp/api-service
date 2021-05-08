@@ -30,6 +30,7 @@ import `in`.jalgaoncohelp.api.model.Unsuccessful
 import `in`.jalgaoncohelp.api.user.model.LoginRequest
 import `in`.jalgaoncohelp.api.user.model.LoginResponse
 import `in`.jalgaoncohelp.api.user.model.NewVolunteerRequest
+import `in`.jalgaoncohelp.api.user.model.UserInfo
 import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import `in`.jalgaoncohelp.core.user.UserService
 import `in`.jalgaoncohelp.core.volunteer.AddVolunteer
@@ -55,7 +56,7 @@ class UserController(
         val user = userService.findUserByEmailAndPassword(email, password)
         val token = jwtController.sign(user.email)
 
-        Success(LoginResponse(token))
+        Success(LoginResponse(token, UserInfo.from(user)))
     } catch (e: Exception) {
         e.printStackTrace()
         Unsuccessful.Unauth()

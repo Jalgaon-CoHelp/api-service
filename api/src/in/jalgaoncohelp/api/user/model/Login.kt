@@ -23,6 +23,7 @@
  */
 package `in`.jalgaoncohelp.api.user.model
 
+import `in`.jalgaoncohelp.core.user.model.User
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -33,5 +34,21 @@ class LoginRequest(
 
 @Serializable
 class LoginResponse(
-    val token: String
+    val token: String,
+    val userInfo: UserInfo
 )
+
+@Serializable
+class UserInfo(
+    val email: String,
+    val phone: String,
+    val role: String
+) {
+    companion object {
+        fun from(user: User) = UserInfo(
+            email = user.email,
+            phone = user.phone,
+            role = user.role.role
+        )
+    }
+}
