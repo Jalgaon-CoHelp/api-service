@@ -27,7 +27,7 @@ import `in`.jalgaoncohelp.api.authentication.JwtController
 import `in`.jalgaoncohelp.api.hospital.HospitalController
 import `in`.jalgaoncohelp.api.resource.ResourceController
 import `in`.jalgaoncohelp.api.taluka.TalukaController
-import `in`.jalgaoncohelp.api.volunteer.UserController
+import `in`.jalgaoncohelp.api.user.UserController
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
