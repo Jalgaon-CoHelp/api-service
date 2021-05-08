@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.application
 
 import `in`.jalgaoncohelp.application.config.installAuthentication
+import `in`.jalgaoncohelp.application.config.installCORS
 import `in`.jalgaoncohelp.application.config.installContentNegotiation
 import `in`.jalgaoncohelp.application.config.installDI
 import `in`.jalgaoncohelp.application.config.installRoutes
@@ -38,6 +39,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @JvmOverloads
 fun Application.main(testing: Boolean = false) {
     installDI()
+    installCORS()
     installAuthentication()
     installContentNegotiation()
     installStatusPage()

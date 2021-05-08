@@ -32,9 +32,12 @@ import `in`.jalgaoncohelp.application.di.initDi
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.features.CORS
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.routing.routing
@@ -43,6 +46,18 @@ import kotlinx.serialization.json.Json
 
 fun Application.installDI() {
     initDi()
+}
+
+fun Application.installCORS() {
+    install(CORS) {
+        method(HttpMethod.Get)
+        method(HttpMethod.Post)
+        method(HttpMethod.Put)
+        method(HttpMethod.Delete)
+        header(HttpHeaders.Authorization)
+        allowCredentials = true
+        anyHost() // TODO Change this in production
+    }
 }
 
 fun Application.installAuthentication() {
