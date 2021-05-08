@@ -63,11 +63,6 @@ data class AddHospitalRequest(
         talukaId = talukaId,
         contact1 = validatedContact1,
         contact2 = validatedContact2,
-        beds = `in`.jalgaoncohelp.core.hospitals.model.Beds(
-            general = beds.general,
-            oxygen = beds.oxygen,
-            icu = beds.icu,
-            ventilator = beds.ventilator
-        )
+        beds = beds.toBedModel()
     )
 }
