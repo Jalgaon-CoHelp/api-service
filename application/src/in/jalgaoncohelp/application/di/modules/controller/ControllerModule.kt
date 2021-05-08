@@ -27,7 +27,7 @@ import `in`.jalgaoncohelp.api.authentication.JwtController
 import `in`.jalgaoncohelp.api.hospital.HospitalController
 import `in`.jalgaoncohelp.api.resource.ResourceController
 import `in`.jalgaoncohelp.api.taluka.TalukaController
-import `in`.jalgaoncohelp.api.volunteer.VolunteerController
+import `in`.jalgaoncohelp.api.volunteer.UserController
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
@@ -36,7 +36,7 @@ import org.kodein.di.singleton
 fun DI.MainBuilder.controllerModule() {
     bind<JwtController>() with singleton { JwtController(instance()) }
     bind<TalukaController>() with singleton { TalukaController(instance()) }
-    bind<VolunteerController>() with singleton { VolunteerController(instance(), instance(), instance(), instance()) }
+    bind<UserController>() with singleton { UserController(instance(), instance(), instance(), instance()) }
     bind<HospitalController>() with singleton { HospitalController(instance()) }
     bind<ResourceController>() with singleton { ResourceController(instance()) }
 }

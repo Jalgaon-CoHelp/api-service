@@ -34,7 +34,7 @@ import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import `in`.jalgaoncohelp.core.user.UserService
 import `in`.jalgaoncohelp.core.volunteer.AddVolunteer
 
-class VolunteerController(
+class UserController(
     private val addVolunteer: AddVolunteer,
     private val userService: UserService,
     private val passwordEncryptor: PasswordEncryptor,

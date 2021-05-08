@@ -31,15 +31,15 @@ import io.ktor.routing.post
 import org.kodein.di.instance
 import org.kodein.di.ktor.closestDI
 
-fun Route.VolunteerRoute() {
-    post("/new") {
-        val controller by closestDI().instance<VolunteerController>()
+fun Route.UserRoute() {
+    post("/volunteers/new") {
+        val controller by closestDI().instance<UserController>()
         val response = controller.addVolunteer(volunteer = call.receive())
         sendResponse(response)
     }
 
     post("/login") {
-        val controller by closestDI().instance<VolunteerController>()
+        val controller by closestDI().instance<UserController>()
         val response = controller.signInWithEmailAndPassword(login = call.receive())
         sendResponse(response)
     }
