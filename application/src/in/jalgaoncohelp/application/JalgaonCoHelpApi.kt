@@ -23,8 +23,8 @@
  */
 package `in`.jalgaoncohelp.application
 
+import `in`.jalgaoncohelp.application.config.installAuthentication
 import `in`.jalgaoncohelp.application.config.installContentNegotiation
-import `in`.jalgaoncohelp.application.config.installCors
 import `in`.jalgaoncohelp.application.config.installDI
 import `in`.jalgaoncohelp.application.config.installRoutes
 import `in`.jalgaoncohelp.application.config.installStatusPage
@@ -34,11 +34,11 @@ import io.ktor.util.KtorExperimentalAPI
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @KtorExperimentalAPI
-@Suppress("unused") // Referenced in com.scalereal.scalefleet.application.conf
+@Suppress("unused")
 @JvmOverloads
 fun Application.main(testing: Boolean = false) {
     installDI()
-    installCors()
+    installAuthentication()
     installContentNegotiation()
     installStatusPage()
     installRoutes()
