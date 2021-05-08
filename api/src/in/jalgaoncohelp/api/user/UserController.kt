@@ -23,7 +23,7 @@
  */
 package `in`.jalgaoncohelp.api.user
 
-import `in`.jalgaoncohelp.api.authentication.JwtController
+import `in`.jalgaoncohelp.api.authentication.jwt.JwtController
 import `in`.jalgaoncohelp.api.model.Response
 import `in`.jalgaoncohelp.api.model.Success
 import `in`.jalgaoncohelp.api.model.Unsuccessful

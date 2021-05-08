@@ -23,7 +23,7 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.controller
 
-import `in`.jalgaoncohelp.api.authentication.JwtController
+import `in`.jalgaoncohelp.api.authentication.jwt.JwtController
 import `in`.jalgaoncohelp.api.hospital.HospitalController
 import `in`.jalgaoncohelp.api.resource.ResourceController
 import `in`.jalgaoncohelp.api.taluka.TalukaController
