@@ -28,11 +28,13 @@ import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT_SCOPE
 import `in`.jalgaoncohelp.core.hospitals.HospitalRepository
 import `in`.jalgaoncohelp.core.mail.EmailRepository
 import `in`.jalgaoncohelp.core.resource.ResourceRepository
+import `in`.jalgaoncohelp.core.roles.RoleRepository
 import `in`.jalgaoncohelp.core.taluka.TalukaRepository
 import `in`.jalgaoncohelp.core.user.UserRepository
 import `in`.jalgaoncohelp.core.userrole.UserRoleRepository
 import `in`.jalgaoncohelp.db.hospitals.HospitalRepositoryImpl
 import `in`.jalgaoncohelp.db.resource.ResourceRepositoryImpl
+import `in`.jalgaoncohelp.db.role.RoleRepositoryImpl
 import `in`.jalgaoncohelp.db.taluka.TalukaRepositoryImpl
 import `in`.jalgaoncohelp.db.user.UserRepositoryImpl
 import `in`.jalgaoncohelp.db.userrole.UserRoleRepositoryImpl
@@ -49,6 +51,7 @@ fun DI.MainBuilder.repositoryModule() {
     bindUserRoleRepository()
     bindHospitalRepository()
     bindResourceRepository()
+    bindRoleRepository()
 }
 
 fun DI.MainBuilder.bindTalukaRepository() {
@@ -73,4 +76,8 @@ fun DI.MainBuilder.bindHospitalRepository() {
 
 fun DI.MainBuilder.bindResourceRepository() {
     bind<ResourceRepository>() with singleton { ResourceRepositoryImpl(instance(), instance(IO_CONTEXT)) }
+}
+
+fun DI.MainBuilder.bindRoleRepository() {
+    bind<RoleRepository>() with singleton { RoleRepositoryImpl(instance(), instance(IO_CONTEXT)) }
 }
