@@ -50,13 +50,13 @@ fun Application.installDI() {
 
 fun Application.installCORS() {
     install(CORS) {
-        method(HttpMethod.Get)
-        method(HttpMethod.Post)
+        method(HttpMethod.Options)
         method(HttpMethod.Put)
         method(HttpMethod.Delete)
+        method(HttpMethod.Patch)
         header(HttpHeaders.Authorization)
         allowCredentials = true
-        anyHost() // TODO Change this in production
+        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 }
 
