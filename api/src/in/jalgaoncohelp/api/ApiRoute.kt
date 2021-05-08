@@ -26,7 +26,7 @@ package `in`.jalgaoncohelp.api
 import `in`.jalgaoncohelp.api.hospital.HospitalRoute
 import `in`.jalgaoncohelp.api.resource.ResourceRoute
 import `in`.jalgaoncohelp.api.taluka.TalukaRoute
-import `in`.jalgaoncohelp.api.volunteer.UserRoute
+import `in`.jalgaoncohelp.api.user.UserRoute
 import io.ktor.routing.Route
 import io.ktor.routing.route
 
