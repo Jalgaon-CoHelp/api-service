@@ -33,7 +33,6 @@ sealed class UserPermissions(val permittedRoles: List<Role>) {
         object UpdateBeds : UserPermissions(listOf(Role.Admin, Role.Volunteer))
         object Delete : UserPermissions(listOf(Role.Admin))
     }
-
 }
 
 infix fun User.hasPermission(permissions: UserPermissions): Boolean {

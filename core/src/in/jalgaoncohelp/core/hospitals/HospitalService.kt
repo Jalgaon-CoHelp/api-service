@@ -43,7 +43,7 @@ class HospitalService(private val repository: HospitalRepository) {
     }
 
     suspend fun updateHospitalBedsById(hospitalId: Long, beds: Beds) {
-        repository.updateHospitalBedsById(hospitalId,beds)
+        repository.updateHospitalBedsById(hospitalId, beds)
     }
 
     fun findHospitalBedType(type: String): BedType {
