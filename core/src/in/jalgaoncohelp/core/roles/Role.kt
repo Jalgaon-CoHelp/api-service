@@ -23,8 +23,9 @@
  */
 package `in`.jalgaoncohelp.core.roles
 
-enum class Role(private val role: String) {
-    Volunteer("volunteer");
+enum class Role(val role: String) {
+    Volunteer("volunteer"),
+    Admin("admin");
 
     companion object {
         fun findByName(name: String): Role {
