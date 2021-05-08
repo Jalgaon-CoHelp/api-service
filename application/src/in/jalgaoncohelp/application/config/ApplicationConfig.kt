@@ -23,18 +23,18 @@
  */
 package `in`.jalgaoncohelp.application.config
 
+import `in`.jalgaoncohelp.api.exception.AuthenticationException
+import `in`.jalgaoncohelp.api.exception.OperationNotAllowedException
 import `in`.jalgaoncohelp.api.mainRoute
 import `in`.jalgaoncohelp.api.model.unsuccessfulResponse
+import `in`.jalgaoncohelp.application.authentication.configureAuth
 import `in`.jalgaoncohelp.application.di.initDi
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
-import io.ktor.features.CORS
 import io.ktor.features.ContentNegotiation
 import io.ktor.features.StatusPages
 import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.routing.routing
@@ -45,16 +45,8 @@ fun Application.installDI() {
     initDi()
 }
 
-fun Application.installCors() {
-    install(CORS) {
-        method(HttpMethod.Options)
-        method(HttpMethod.Put)
-        method(HttpMethod.Delete)
-        method(HttpMethod.Patch)
-        header(HttpHeaders.Authorization)
-        allowCredentials = true
-        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
-    }
+fun Application.installAuthentication() {
+    configureAuth()
 }
 
 fun Application.installContentNegotiation() {
@@ -71,16 +63,15 @@ fun Application.installContentNegotiation() {
 fun Application.installStatusPage() {
     install(StatusPages) {
         exception<AuthenticationException> {
-            call.respond(HttpStatusCode.Unauthorized)
+            call.respond(HttpStatusCode.Unauthorized, unsuccessfulResponse(it.message))
         }
-        exception<AuthorizationException> {
-            call.respond(HttpStatusCode.Forbidden)
+        exception<OperationNotAllowedException> {
+            call.respond(HttpStatusCode.Forbidden, unsuccessfulResponse(it.message))
         }
         exception<IllegalStateException> {
             call.respond(HttpStatusCode.BadRequest, unsuccessfulResponse(it.message))
         }
         exception<IllegalArgumentException> {
-
             call.respond(HttpStatusCode.BadRequest, unsuccessfulResponse(it.toString()))
         }
     }
@@ -90,5 +81,3 @@ fun Application.installRoutes() {
     routing { mainRoute() }
 }
 
-class AuthenticationException : RuntimeException()
-class AuthorizationException : RuntimeException()
