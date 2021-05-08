@@ -1,4 +1,5 @@
-POST http://localhost:8080/api/hospitals/new
+POST http://localhost:8080/api/hospitals/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwczovL2phbGdhb25jb2hlbHAuaW4iLCJpc3MiOiJKYWxnYW9uLUNvSGVscC1Jc3N1ZXIiLCJ1c2VySWQiOiJzaHJleWFzcGF0aWxhZG1pbkBnbWFpbC5jb20ifQ.mIbiEHQtp0OqeecHZzA9DvHYe1c_PRzz2niCUEmjkb0
 Content-Type: application/json
 
 {

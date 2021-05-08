@@ -1,7 +1,7 @@
-POST http://localhost:8080/api/volunteers/login
+POST http://localhost:8080/api/users/login
 Content-Type: application/json
 
 {
-  "email": "loremipsum@gmail.com",
-  "password": "OX7533"
+  "email": "shreyaspatiladmin@gmail.com",
+  "password": "NP9470"
 }

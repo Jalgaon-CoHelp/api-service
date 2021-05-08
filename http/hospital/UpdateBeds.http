@@ -1,0 +1,10 @@
+PUT http://localhost:8080/api/hospitals/10/beds
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJodHRwczovL2phbGdhb25jb2hlbHAuaW4iLCJpc3MiOiJKYWxnYW9uLUNvSGVscC1Jc3N1ZXIiLCJ1c2VySWQiOiJzaHJleWFzcGF0aWxnQGdtYWlsLmNvbSJ9.LIb7hk0D7HzM-JJ9sCBFbqjMQjNPCNVKwk6YvLzM2-w
+Content-Type: application/json
+
+{
+  "general": 0,
+  "oxygen": 0,
+  "icu": 0,
+  "ventilator": 1
+}
