@@ -23,12 +23,14 @@
  */
 package `in`.jalgaoncohelp.core.user
 
+import `in`.jalgaoncohelp.core.user.model.User
+
 class UserService(private val userRepository: UserRepository) {
     suspend fun isEmailAlreadyUsed(email: String): Boolean = userRepository.isEmailAlreadyUsed(email)
 
-    suspend fun findUserById(id: Long): User = userRepository.findUserById(id)
+    suspend fun findUserIdByEmail(email: String): Long = userRepository.findUserIdByEmail(email)
 
-    suspend fun findUserByEmail(email: String): Long = userRepository.findUserByEmail(email)
+    suspend fun findUserByEmail(email: String): User = userRepository.findUserByEmail(email)
 
     suspend fun findUserByEmailAndPassword(
         email: String,
