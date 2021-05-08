@@ -40,3 +40,12 @@ LIMIT :limit OFFSET :offset;
 getTotalHospitals:
 SELECT count(*) AS total_hospitals
 FROM hospitals;
+
+updateBedsById:
+UPDATE hospitals
+SET bed_general    = ?,
+    bed_oxygen     = ?,
+    bed_icu        = ?,
+    bed_ventilator = ?,
+    updated_at     = CURRENT_TIMESTAMP
+WHERE id = :hospitalId;
