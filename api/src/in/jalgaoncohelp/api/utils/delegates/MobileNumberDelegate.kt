@@ -30,8 +30,8 @@ class MobileNumberDelegate(private var value: String) : ReadWriteProperty<Any?, 
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): String {
         val trimmedValue = value.trim()
-        if (trimmedValue.length != 10) {
-            error("phone is invalid mobile number")
+        if (trimmedValue.length < 10) {
+            error("Invalid mobile number")
         }
         return trimmedValue
     }
