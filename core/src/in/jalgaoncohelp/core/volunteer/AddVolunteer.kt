@@ -81,6 +81,9 @@ class AddVolunteer(
                <br>
                <br>
                Thank you!
+               <br>
+               <br>
+               <img src="https://jalgaoncohelp.in/Jalgaon-CoHelp-Logo.png" height="120"/>
             """.trimIndent()
         append(content)
     }
