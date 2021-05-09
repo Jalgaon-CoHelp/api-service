@@ -40,12 +40,14 @@ class LoginResponse(
 
 @Serializable
 class UserInfo(
+    val name: String,
     val email: String,
     val phone: String,
     val role: String
 ) {
     companion object {
         fun from(user: User) = UserInfo(
+            name = user.name,
             email = user.email,
             phone = user.phone,
             role = user.role.role
