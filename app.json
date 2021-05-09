@@ -1,0 +1,8 @@
+{
+  "name": "Jalgaon CoHelp API",
+  "description": "The REST API Service for Jalgaon CoHelp application",
+  "image": "heroku/java",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
