@@ -2,6 +2,6 @@ POST http://localhost:8080/api/users/login
 Content-Type: application/json
 
 {
-  "email": "shreyaspatiladmin@gmail.com",
-  "password": "NP9470"
+  "email": "loremipsum@gmail.com",
+  "password": "YOUR_PASSWORD"
 }

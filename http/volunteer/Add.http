@@ -2,8 +2,9 @@ POST http://localhost:8080/api/users/volunteers/new
 Content-Type: application/json
 
 {
-  "name": "Shreyas Patil A",
-  "email": "shreyaspatiladmin@gmail.com",
+  "name": "Lorem Ipsum",
+  "email": "loremipsum@gmail.com",
   "mobile": "1111111111",
-  "talukaId": 1
+  "talukaId": 1,
+  "password": "YOUR_PASSWORD"
 }
