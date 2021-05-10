@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.api.utils
+package `in`.jalgaoncohelp.api.utils.delegates
 
 import java.util.regex.Pattern
 import kotlin.properties.ReadWriteProperty

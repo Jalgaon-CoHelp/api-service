@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package `in`.jalgaoncohelp.api.utils
+package `in`.jalgaoncohelp.api.utils.delegates
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -40,4 +40,4 @@ class TrimmedTextDelegate(private var value: String) : ReadWriteProperty<Any?, S
     }
 }
 
-fun trimmed(text: String) = TrimmedTextDelegate(text)
+fun trimmed(text: String) = TextPasswordDelegate(text)

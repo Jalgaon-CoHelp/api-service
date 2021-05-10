@@ -42,7 +42,13 @@ class UserController(
     private val jwtController: JwtController
 ) {
     suspend fun addVolunteer(volunteer: NewVolunteerRequest): Response = try {
-        addVolunteer.add(volunteer.validName, volunteer.validEmail, volunteer.validMobile, volunteer.talukaId)
+        addVolunteer.add(
+            name = volunteer.validName,
+            email = volunteer.validEmail,
+            password = volunteer.validPassword,
+            phone = volunteer.validMobile,
+            talukaId = volunteer.talukaId
+        )
         Success("OK")
     } catch (e: Exception) {
         e.printStackTrace()
