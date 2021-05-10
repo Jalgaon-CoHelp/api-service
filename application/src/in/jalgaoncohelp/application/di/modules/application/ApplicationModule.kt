@@ -26,7 +26,6 @@ package `in`.jalgaoncohelp.application.di.modules.application
 import `in`.jalgaoncohelp.api.authentication.jwt.JwtSpec
 import `in`.jalgaoncohelp.application.authentication.DefaultPasswordEncryptor
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
-import `in`.jalgaoncohelp.application.config.EmailConfig
 import `in`.jalgaoncohelp.application.config.JwtConfig
 import `in`.jalgaoncohelp.core.authentication.PasswordEncryptor
 import io.ktor.application.Application
@@ -39,7 +38,6 @@ import org.kodein.di.singleton
 
 fun DI.MainBuilder.applicationModule(application: Application) {
     bindDatabaseConfig()
-    bindEmailConfig()
     bindApplicationConfig(application)
     bindJwtConfig()
     bindJwtSpec()
@@ -52,12 +50,7 @@ private fun DI.MainBuilder.bindDatabaseConfig() {
 
 private fun DI.MainBuilder.bindApplicationConfig(application: Application) {
     bind<ApplicationConfig>("database") with provider { application.environment.config.config("database") }
-    bind<ApplicationConfig>("email") with provider { application.environment.config.config("email") }
     bind<ApplicationConfig>("jwt") with provider { application.environment.config.config("jwt") }
-}
-
-private fun DI.MainBuilder.bindEmailConfig() {
-    bind<EmailConfig>() with singleton { EmailConfig(instance("email")) }
 }
 
 private fun DI.MainBuilder.bindPasswordEncrypter() {

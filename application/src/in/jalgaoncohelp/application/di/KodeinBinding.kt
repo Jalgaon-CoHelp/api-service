@@ -29,7 +29,6 @@ import `in`.jalgaoncohelp.application.di.modules.coroutine.coroutineModule
 import `in`.jalgaoncohelp.application.di.modules.datasource.dataSourceModule
 import `in`.jalgaoncohelp.application.di.modules.datasource.sqlDelightModule
 import `in`.jalgaoncohelp.application.di.modules.interactors.interactorsModule
-import `in`.jalgaoncohelp.application.di.modules.mail.emailConfigModule
 import `in`.jalgaoncohelp.application.di.modules.repository.repositoryModule
 import `in`.jalgaoncohelp.application.di.modules.service.serviceModule
 import io.ktor.application.Application
@@ -39,7 +38,6 @@ fun Application.initDi() = di {
     applicationModule(this@initDi)
     sqlDelightModule()
     dataSourceModule()
-    emailConfigModule()
     coroutineModule()
     repositoryModule()
     serviceModule()

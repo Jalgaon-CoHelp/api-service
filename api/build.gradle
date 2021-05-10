@@ -5,7 +5,6 @@ dependencies {
     // Project modules
     api project(":core")
     api project(":port:db")
-    api project(":port:smtp")
 
     // Serializer
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializerVersion"
