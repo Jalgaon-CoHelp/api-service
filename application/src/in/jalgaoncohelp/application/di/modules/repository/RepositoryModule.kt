@@ -24,7 +24,6 @@
 package `in`.jalgaoncohelp.application.di.modules.repository
 
 import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT
-import `in`.jalgaoncohelp.application.di.modules.coroutine.IO_CONTEXT_SCOPE
 import `in`.jalgaoncohelp.core.hospitals.HospitalRepository
 import `in`.jalgaoncohelp.core.resource.ResourceRepository
 import `in`.jalgaoncohelp.core.roles.RoleRepository

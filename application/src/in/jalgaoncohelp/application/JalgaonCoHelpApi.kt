@@ -44,5 +44,4 @@ fun Application.main(testing: Boolean = false) {
     installContentNegotiation()
     installStatusPage()
     installRoutes()
-
 }
