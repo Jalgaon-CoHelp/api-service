@@ -34,5 +34,5 @@ fun DI.MainBuilder.interactorsModule() {
 }
 
 fun DI.MainBuilder.bindAddVolunteer() {
-    bind<AddVolunteer>() with singleton { AddVolunteer(instance(), instance(), instance(), instance(), instance()) }
+    bind<AddVolunteer>() with singleton { AddVolunteer(instance(), instance(), instance(), instance()) }
 }
