@@ -59,7 +59,9 @@ fun Application.installCORS() {
         allowSameOrigin = true
         allowCredentials = true
         allowNonSimpleContentTypes = true
-        host("https://jalgaoncohelp.in")
+
+        host("jalgaoncohelp.in", listOf("https", "http"), listOf("api","www"))
+        host("jalgaoncohelp.netlify.app", listOf("https", "http"), listOf("www"))
     }
 }
 

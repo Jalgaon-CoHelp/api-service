@@ -24,17 +24,14 @@
 package `in`.jalgaoncohelp.mail
 
 import `in`.jalgaoncohelp.core.mail.EmailRepository
+import com.sun.mail.smtp.SMTPTransport
 import java.util.Properties
 import java.util.logging.Logger
-import javax.mail.Authenticator
 import javax.mail.Message
-import javax.mail.PasswordAuthentication
 import javax.mail.Session
-import javax.mail.Transport
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 class EmailRepositoryImpl(
     private val emailConfig: EmailConfig,
@@ -42,21 +39,15 @@ class EmailRepositoryImpl(
 ) : EmailRepository {
 
     private val properties = Properties().apply {
-        put("mail.smtp.host", emailConfig.host)
-        put("mail.smtp.socketFactory.port", emailConfig.port)
-        put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory")
-        put("mail.smtp.auth", "true")
-        put("mail.smtp.port", emailConfig.port)
+        put("mail.smtps.host", emailConfig.host)
+        put("mail.smtps.auth", "true");
     }
 
-    private val session = Session.getDefaultInstance(properties, object : Authenticator() {
-        override fun getPasswordAuthentication(): PasswordAuthentication {
-            return PasswordAuthentication(emailConfig.email, emailConfig.password)
-        }
-    })
+    private val session get() = Session.getDefaultInstance(properties, null)
 
     override fun sendEmail(to: String, subject: String, body: String) {
         try {
+            println(properties)
             val message = MimeMessage(session).apply {
                 setFrom(InternetAddress(emailConfig.email, emailConfig.senderName))
                 addRecipient(Message.RecipientType.TO, InternetAddress(to))
@@ -64,7 +55,11 @@ class EmailRepositoryImpl(
                 setContent(body, "text/html")
             }
 
-            scope.launch { Transport.send(message) }
+            val transport = session.getTransport("smtps") as SMTPTransport
+
+            transport.connect(emailConfig.host, emailConfig.email, emailConfig.password)
+            transport.sendMessage(message, message.allRecipients)
+
         } catch (e: Exception) {
             Logger.getLogger(javaClass.simpleName).info(e.message)
         }
