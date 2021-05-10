@@ -23,8 +23,8 @@
  */
 package `in`.jalgaoncohelp.api.hospital.model
 
-import `in`.jalgaoncohelp.api.utils.capitalize
-import `in`.jalgaoncohelp.api.utils.validPhoneNumber
+import `in`.jalgaoncohelp.api.utils.delegates.capitalize
+import `in`.jalgaoncohelp.api.utils.delegates.validPhoneNumber
 import `in`.jalgaoncohelp.core.hospitals.model.NewHospitalParams
 import kotlinx.serialization.Serializable
 

@@ -23,8 +23,8 @@
  */
 package `in`.jalgaoncohelp.api.resource.model
 
-import `in`.jalgaoncohelp.api.utils.capitalize
-import `in`.jalgaoncohelp.api.utils.validMobileNumber
+import `in`.jalgaoncohelp.api.utils.delegates.capitalize
+import `in`.jalgaoncohelp.api.utils.delegates.validMobileNumber
 import `in`.jalgaoncohelp.core.resource.model.NewResourceParams
 import `in`.jalgaoncohelp.core.resource.model.ResourceName
 import `in`.jalgaoncohelp.core.resource.model.ResourceType
