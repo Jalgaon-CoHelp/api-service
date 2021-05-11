@@ -38,13 +38,14 @@ import org.kodein.di.ktor.closestDI
 
 fun Route.HospitalRoute() {
     authenticate {
-        post("/") {
-            authorize(UserPermissions.Hospital.CreateNew) {
-                val controller by closestDI().instance<HospitalController>()
-                val response = controller.addHospital(addHospitalRequest = call.receive())
-                sendResponse(response)
-            }
-        }
+//        TODO Uncomment this route once this API is in use
+//        post("/") {
+//            authorize(UserPermissions.Hospital.CreateNew) {
+//                val controller by closestDI().instance<HospitalController>()
+//                val response = controller.addHospital(addHospitalRequest = call.receive())
+//                sendResponse(response)
+//            }
+//        }
 
         put("/{id}/beds") {
             authorize(UserPermissions.Hospital.UpdateBeds) {
