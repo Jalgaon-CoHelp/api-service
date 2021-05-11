@@ -35,7 +35,7 @@ sealed class Unsuccessful(e: Throwable, statusCode: HttpStatusCode) : Response(s
 
     class NotFound<T>(e: Throwable = Exception("Not found")) : Unsuccessful(e, HttpStatusCode.NotFound)
     class Failed(e: Throwable = Exception("Failed to satisfy request")) : Unsuccessful(e, HttpStatusCode.BadRequest)
-    class Unauth(e: Throwable = Exception("Unauth request")) : Unsuccessful(e, HttpStatusCode.Unauthorized)
+    class Unauth(e: Throwable = Exception("Authentication Failed")) : Unsuccessful(e, HttpStatusCode.Unauthorized)
 
     @Serializable
     class UnsuccessfulResponse(val message: String)
