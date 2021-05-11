@@ -31,7 +31,7 @@ import org.kodein.di.instance
 import org.kodein.di.ktor.closestDI
 
 fun Route.TalukaRoute() {
-    get("/") {
+    get("") {
         val talukaController by closestDI().instance<TalukaController>()
         call.respond(talukaController.getAllTalukas())
     }

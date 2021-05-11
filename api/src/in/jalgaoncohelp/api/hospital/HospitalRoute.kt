@@ -57,7 +57,7 @@ fun Route.HospitalRoute() {
         }
     }
 
-    get("/") {
+    get("") {
         val controller by closestDI().instance<HospitalController>()
         val page = call.request.queryParameters["page"]?.toLongOrNull()
         val limit = call.request.queryParameters["limit"]?.toLongOrNull()

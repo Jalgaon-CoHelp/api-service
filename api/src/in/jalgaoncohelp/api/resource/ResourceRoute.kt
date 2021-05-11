@@ -45,7 +45,7 @@ fun Route.ResourceRoute() {
         sendResponse(response)
     }
 
-    get("/") {
+    get("") {
         val controller by closestDI().instance<ResourceController>()
 
         val page = call.request.queryParameters["page"]?.toLongOrNull()
