@@ -24,6 +24,7 @@
 package `in`.jalgaoncohelp.api.user
 
 import `in`.jalgaoncohelp.api.authentication.jwt.JwtController
+import `in`.jalgaoncohelp.api.exception.AuthenticationException
 import `in`.jalgaoncohelp.api.model.Response
 import `in`.jalgaoncohelp.api.model.Success
 import `in`.jalgaoncohelp.api.model.Unsuccessful
@@ -65,6 +66,6 @@ class UserController(
         Success(LoginResponse(token, UserInfo.from(user)))
     } catch (e: Exception) {
         e.printStackTrace()
-        Unsuccessful.Unauth()
+        Unsuccessful.Unauth(AuthenticationException("Invalid email / password"))
     }
 }

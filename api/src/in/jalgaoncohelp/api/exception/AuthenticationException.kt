@@ -23,6 +23,6 @@
  */
 package `in`.jalgaoncohelp.api.exception
 
-class AuthenticationException : Exception("Authentication Failed")
+class AuthenticationException(message: String) : Exception(message)
 
-fun authenticationError(): Nothing = throw AuthenticationException()
+fun authenticationError(message: String = "Authentication Failed"): Nothing = throw AuthenticationException(message)
