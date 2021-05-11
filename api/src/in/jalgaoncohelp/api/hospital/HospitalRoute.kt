@@ -31,7 +31,6 @@ import io.ktor.auth.authenticate
 import io.ktor.request.receive
 import io.ktor.routing.Route
 import io.ktor.routing.get
-import io.ktor.routing.post
 import io.ktor.routing.put
 import org.kodein.di.instance
 import org.kodein.di.ktor.closestDI
