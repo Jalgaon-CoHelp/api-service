@@ -1,0 +1,18 @@
+INSERT INTO hospitals(name, address, taluka_id, contact_1,contact_2)
+VALUES ('Bapji Jeevandeep Multispeciality Hospital', 'Hirapur Rd, Datta Wadi, Chalisgaon, Maharashtra 424101', (SELECT id FROM talukas WHERE name ILIKE 'Chalisgaon'), '9822323362', ''),
+('Dhanvantari Hospital Chalisgaon', 'AnilDada Deshmukh complex, Ghat Rd, Chalisgaon, Maharashtra 424101', (SELECT id FROM talukas WHERE name ILIKE 'Chalisgaon'), '09850259985', ''),
+('Aradhana Hospital', 'Dharangaon', (SELECT id FROM talukas WHERE name ILIKE 'Dharangaon'), '8830736037', ''),
+('SHRIRAM MULTI SPECIALITY HOSPITAL, JALGAON', 'Jalgaon', (SELECT id FROM talukas WHERE name ILIKE 'Jalgaon'), '7588802771', ''),
+('Lilavati Hospital, Bhadgaon', 'Bhadgaon', (SELECT id FROM talukas WHERE name ILIKE 'Bhadgaon'), '9890922288', ''),
+('Life Line Covid Care Centre Bhadgaon', 'Bhadgaon', (SELECT id FROM talukas WHERE name ILIKE 'Bhadgaon'), '9422706901', ''),
+('Sai Pushp Hospital, Bhusawal', 'Bhusawal', (SELECT id FROM talukas WHERE name ILIKE 'Bhusawal'), '7218466999', ''),
+('Tirupati covid care center Parola', 'Parola', (SELECT id FROM talukas WHERE name ILIKE 'Parola'), '9860064216', ''),
+('SARODE HOSPITAL, BHUSAWAL', 'Bhusawal', (SELECT id FROM talukas WHERE name ILIKE 'Bhusawal'), '7767837460', ''),
+('MUSKAN HOSPITAL,  BHUSAWAL', 'Bhusawal', (SELECT id FROM talukas WHERE name ILIKE 'Bhusawal'), '9820482576', ''),
+('Nityanand Hospital Parola', 'Parola', (SELECT id FROM talukas WHERE name ILIKE 'Parola'), '8390540928', ''),
+('Life Care Hospital Bhadgaon . Tal.Bhadgaon', 'Bhadgaon', (SELECT id FROM talukas WHERE name ILIKE 'Bhadgaon'), '9960972554', ''),
+('Mangalam Hospital,Raver', 'Raver', (SELECT id FROM talukas WHERE name ILIKE 'Raver'), '8806100229', ''),
+('MALATI SANJYOT COVID CENTER BHUSAWAL', 'Bhusawal', (SELECT id FROM talukas WHERE name ILIKE 'Bhusawal'), '9890143442', ''),
+('PRATIBHA HOSPITAL BHUSAWAL', 'Bhusawal', (SELECT id FROM talukas WHERE name ILIKE 'Bhusawal'), '9823059558', ''),
+('Kimayagar Hospital Savada', 'Savda', (SELECT id FROM talukas WHERE name ILIKE 'Jalgaon'), '9555515517', ''),
+('Kantai Hospital Parola', 'Parola', (SELECT id FROM talukas WHERE name ILIKE 'Parola'), '9890272460', '');
