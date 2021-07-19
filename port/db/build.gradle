@@ -21,7 +21,7 @@ dependencies {
     implementation project(":core")
 
     // SQLDelight
-    implementation "com.squareup.sqldelight:jdbc-driver:1.5.0"
+    implementation "com.squareup.sqldelight:jdbc-driver:1.5.1"
     api "com.squareup.sqldelight:runtime:$sqlDelightVersion"
     api "com.squareup.sqldelight:jdbc-driver:$sqlDelightVersion"
 
