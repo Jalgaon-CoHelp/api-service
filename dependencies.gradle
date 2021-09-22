@@ -4,7 +4,7 @@ ext {
     ktorVersion = '1.5.4'
 
     // Coroutines
-    coroutinesVersion = "1.4.3"
+    coroutinesVersion = "1.5.2"
 
     // Serializer
     kotlinSerializerVersion = "1.2.0"
