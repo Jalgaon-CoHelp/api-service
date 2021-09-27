@@ -10,7 +10,7 @@ ext {
     kotlinSerializerVersion = "1.2.0"
 
     // Lint
-    spotlessVersion = "5.12.4"
+    spotlessVersion = "5.15.2"
 
     // Kodein (DI)
     kodeinDiVersion = "7.5.0"
