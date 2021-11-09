@@ -1,7 +1,7 @@
 ext {
     // Kotlin
     kotlinVersion = '1.5.31'
-    ktorVersion = '1.6.3'
+    ktorVersion = '1.6.5'
 
     // Coroutines
     coroutinesVersion = "1.4.3"
