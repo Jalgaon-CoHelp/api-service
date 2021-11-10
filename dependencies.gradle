@@ -17,17 +17,17 @@ ext {
     spotlessVersion = "5.12.4"
 
     // Kodein (DI)
-    kodeinDiVersion = "7.5.0"
+    kodeinDiVersion = "7.9.0"
 
     // DB
     postgresVersion = "42.2.18"
-    hikariVersion = "4.0.3"
+    hikariVersion = "5.0.0"
 
     // SQLDelight
     sqlDelightVersion = '1.5.1'
 
     // Logging Utility
-    logbackVersion = '1.2.1'
+    logbackVersion = '1.2.6'
 
     // Liquibase Migration
     liquibaseVersion = '4.0.0'
