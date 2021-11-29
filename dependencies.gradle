@@ -20,7 +20,7 @@ ext {
     hikariVersion = "5.0.0"
 
     // SQLDelight
-    sqlDelightVersion = '1.5.1'
+    sqlDelightVersion = '1.5.3'
 
     // Logging Utility
     logbackVersion = '1.2.7'
