@@ -23,17 +23,17 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.datasource
 
+import com.squareup.sqldelight.db.SqlDriver
+import com.squareup.sqldelight.sqlite.driver.asJdbcDriver
 import `in`.jalgaoncohelp.application.config.DatabaseConfig
 import `in`.jalgaoncohelp.application.di.modules.datasource.adapters.adaptersModule
 import `in`.jalgaoncohelp.db.DefaultDataSource
 import `in`.jalgaoncohelp.db.JalgaonCoHelpDatabase
-import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.sqlite.driver.asJdbcDriver
-import javax.sql.DataSource
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.instance
 import org.kodein.di.singleton
+import javax.sql.DataSource
 
 fun DI.MainBuilder.dataSourceModule() {
     adaptersModule()

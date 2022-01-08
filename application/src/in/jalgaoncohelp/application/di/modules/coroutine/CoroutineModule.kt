@@ -23,13 +23,13 @@
  */
 package `in`.jalgaoncohelp.application.di.modules.coroutine
 
-import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.kodein.di.DI
 import org.kodein.di.bind
 import org.kodein.di.provider
 import org.kodein.di.singleton
+import kotlin.coroutines.CoroutineContext
 
 const val IO_CONTEXT = "IOContext"
 const val IO_CONTEXT_SCOPE = "IOContextScope"

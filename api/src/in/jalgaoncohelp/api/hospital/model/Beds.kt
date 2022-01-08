@@ -23,8 +23,8 @@
  */
 package `in`.jalgaoncohelp.api.hospital.model
 
-import `in`.jalgaoncohelp.core.hospitals.model.Beds as CoreBed
 import kotlinx.serialization.Serializable
+import `in`.jalgaoncohelp.core.hospitals.model.Beds as CoreBed
 
 @Serializable
 data class Beds(
