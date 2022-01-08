@@ -26,5 +26,5 @@ ext {
     logbackVersion = '1.2.7'
 
     // Liquibase Migration
-    liquibaseVersion = '4.6.1'
+    liquibaseVersion = '4.6.2'
 }
