@@ -13,7 +13,7 @@ ext {
     spotlessVersion = "6.1.2"
 
     // Kodein (DI)
-    kodeinDiVersion = "7.9.0"
+    kodeinDiVersion = "7.11.0"
 
     // DB
     postgresVersion = "42.2.18"
