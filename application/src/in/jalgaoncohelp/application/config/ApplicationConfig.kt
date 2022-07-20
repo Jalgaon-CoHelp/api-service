@@ -61,7 +61,7 @@ fun Application.installCORS() {
         allowNonSimpleContentTypes = true
 
         host("jalgaoncohelp.in", listOf("https", "http"), listOf("api", "www"))
-        host("jalgaoncohelp.netlify.app", listOf("https", "http"), listOf("www"))
+        host("netlify.app", listOf("https", "http"), listOf("jalgaoncohelp"))
     }
 }
 
