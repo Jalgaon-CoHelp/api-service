@@ -7,7 +7,7 @@ ext {
     coroutinesVersion = "1.5.2"
 
     // Serializer
-    kotlinSerializerVersion = "1.3.1"
+    kotlinSerializerVersion = "1.4.0"
 
     // Lint
     spotlessVersion = "6.1.2"
