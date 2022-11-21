@@ -23,7 +23,7 @@ ext {
     sqlDelightVersion = '1.5.3'
 
     // Logging Utility
-    logbackVersion = '1.2.7'
+    logbackVersion = '1.4.5'
 
     // Liquibase Migration
     liquibaseVersion = '4.6.2'
